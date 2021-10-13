@@ -5,30 +5,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: const Color(0xFFFFFFFF),
-          leading: Image(
-            image: AssetImage('assets/images/logo_login.jpg'),
-          ),
-          title: Center(
-            child: Text(
-              "FoodByte",
-              style: TextStyle(
-                fontFamily: 'Tempus Sans ITC',
-                fontSize: 40,
-                color: const Color(0xff000000),
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(
-                  Icons.menu_outlined,
-                ),
-                onPressed: null)
-          ]),
-      body: Padding(
+    return Container(
+
+      child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,10 +18,14 @@ class ProfilePage extends StatelessWidget {
                   height: 140.0,
                   child: Image.asset("assets/images/profilepic.png")),
             ),
-            SizedBox(height: 30),
+            SizedBox(
+              height: 30,
+            ),
             Row(
               children: [
-                SizedBox(width: 20),
+                SizedBox(
+                  width: 20,
+                ),
                 Icon(
                   Icons.person,
                   color: Color(0xffEE7700),
@@ -58,7 +41,15 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            Center(
+              child: SizedBox(
+                height: 40,
+                width: 340,
+                child: Divider(
+                  thickness: 1,
+                ),
+              ),
+            ),
             Row(
               children: [
                 SizedBox(width: 20),
@@ -77,7 +68,15 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            Center(
+              child: SizedBox(
+                height: 40,
+                width: 340,
+                child: Divider(
+                  thickness: 1,
+                ),
+              ),
+            ),
             Row(
               children: [
                 SizedBox(width: 20),
@@ -96,7 +95,15 @@ class ProfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 50),
+            Center(
+              child: SizedBox(
+                height: 40,
+                width: 340,
+                child: Divider(
+                  thickness: 1,
+                ),
+              ),
+            ),
             Text(
               "My Orders",
               style: TextStyle(
@@ -159,14 +166,14 @@ class ProfilePage extends StatelessWidget {
                       'ITEMS',
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                     Text(
                       '2 x Veg Triple Schezwan Rice, 1 x Chilly Garlic Noodles',
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -174,14 +181,14 @@ class ProfilePage extends StatelessWidget {
                       'ORDERED ON',
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                     Text(
                       '26 Jul 2021 at 6:30 pm',
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
-                        fontSize: 12,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -191,37 +198,7 @@ class ProfilePage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedLabelStyle: TextStyle(
-          fontFamily: 'Segoe UI',
-          fontSize: 20,
-          color: const Color(0xff00152D),
-        ),
-        unselectedLabelStyle: TextStyle(
-          fontFamily: 'Segoe UI',
-          fontSize: 15,
-          color: const Color(0xff181818),
-        ),
-        // backgroundColor: const Color(0xFFFFFF),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant_menu_outlined),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle_outlined),
-            label: 'Account',
-          ),
-        ],
-        // currentIndex: _selectedIndex,
-        selectedItemColor: const Color(0xffEE7700),
-        // onTap: _onItemTapped,
-      ),
+
     );
   }
 }
