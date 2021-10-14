@@ -1,4 +1,4 @@
-# foodbyte
+# FoodByte
 
 A food ordering app.
 
