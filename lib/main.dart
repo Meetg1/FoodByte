@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
-import 'package:foodbyte/screens/profile_page.dart';
 
 void main() {
   runApp(MyApp());

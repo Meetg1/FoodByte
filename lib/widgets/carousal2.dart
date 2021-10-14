@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
 
 class Carousal2 extends StatelessWidget {
+  final List<FoodItem> todaySpecial;
+  final String currentDish;
+
+  Carousal2(this.todaySpecial, this.currentDish);
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -19,10 +24,11 @@ class Carousal2 extends StatelessWidget {
       Container(
           height: 163.0,
           child: ListView.builder(
+              key: Key(currentDish),
               scrollDirection: Axis.horizontal,
-              itemCount: chinese.length,
+              itemCount: todaySpecial.length,
               itemBuilder: (BuildContext context, int index) {
-                FoodItem fooditem = chinese[index];
+                // FoodItem fooditem = todaySpecial[index];
                 return Container(
                   width: 320.0,
                   child: Stack(children: [
@@ -48,14 +54,14 @@ class Carousal2 extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              chinese[index].name,
+                              todaySpecial[index].name,
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
-                              chinese[index].description,
+                              todaySpecial[index].description,
                               style: TextStyle(
                                 fontSize: 11.0,
                                 fontWeight: FontWeight.w600,
@@ -65,7 +71,7 @@ class Carousal2 extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "₹${chinese[index].price}/-",
+                                  "₹${todaySpecial[index].price}/-",
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w600,
@@ -111,7 +117,7 @@ class Carousal2 extends StatelessWidget {
                         child: Image(
                           width: 140.0,
                           image: AssetImage(
-                            'assets/images/burger2.jpg',
+                            'assets/images/${todaySpecial[index].imageName}',
                           ),
                           fit: BoxFit.cover,
                         ),

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
 
 class Carousal1 extends StatelessWidget {
+  final List<FoodItem> mostPopular;
+  final String currentDish;
+
+  Carousal1(this.mostPopular, this.currentDish);
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -19,11 +24,13 @@ class Carousal1 extends StatelessWidget {
       Container(
           height: 180.0,
           child: ListView.builder(
+              key: Key(currentDish),
               scrollDirection: Axis.horizontal,
-              itemCount: chinese.length,
+              itemCount: mostPopular.length,
               itemBuilder: (BuildContext context, int index) {
-                FoodItem fooditem = chinese[index];
+                // FoodItem fooditem = mostPopular[index];
                 return Container(
+                  // key: Key(index.toString()),
                   width: 320.0,
                   child: Stack(children: [
                     Container(
@@ -48,14 +55,14 @@ class Carousal1 extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              chinese[index].name,
+                              mostPopular[index].name,
                               style: TextStyle(
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
-                              chinese[index].description,
+                              mostPopular[index].description,
                               style: TextStyle(
                                 fontSize: 11.0,
                                 fontWeight: FontWeight.w600,
@@ -65,7 +72,7 @@ class Carousal1 extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "₹${chinese[index].price}/-",
+                                  "₹${mostPopular[index].price}/-",
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w600,
@@ -111,7 +118,7 @@ class Carousal1 extends StatelessWidget {
                         child: Image(
                           width: 140.0,
                           image: AssetImage(
-                            'assets/images/burger2.jpg',
+                            'assets/images/${mostPopular[index].imageName}',
                           ),
                           fit: BoxFit.cover,
                         ),

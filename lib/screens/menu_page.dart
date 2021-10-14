@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:foodbyte/models/food_item.dart';
+import 'package:foodbyte/models/food_brain.dart';
 import 'package:foodbyte/widgets/carousal1.dart';
 import 'package:foodbyte/widgets/carousal2.dart';
 
-class MenuPage extends StatelessWidget {
-  const MenuPage({Key? key}) : super(key: key);
+FoodBrain f = FoodBrain();
+
+class MenuPage extends StatefulWidget {
+  // const MenuPage({Key? key}) : super(key: key);
+
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  String currentDish = "pizza";
+
+  List<FoodItem> mostPopular = f.getMostPopular("pizza");
+
+  List<FoodItem> todaySpecial = f.getTodaySpecial("pizza");
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +48,11 @@ class MenuPage extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          print("hi");
+                          setState(() {
+                            currentDish = "pizza";
+                            mostPopular = f.getMostPopular("pizza");
+                            todaySpecial = f.getTodaySpecial("pizza");
+                          });
                         },
                         child: Container(
                             width: 70.0,
@@ -55,7 +74,11 @@ class MenuPage extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          print("hi");
+                          setState(() {
+                            currentDish = "burger";
+                            mostPopular = f.getMostPopular("burger");
+                            todaySpecial = f.getTodaySpecial("burger");
+                          });
                         },
                         child: Container(
                             width: 70.0,
@@ -77,7 +100,11 @@ class MenuPage extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          print("hi");
+                          setState(() {
+                            currentDish = "chinese";
+                            mostPopular = f.getMostPopular("chinese");
+                            todaySpecial = f.getTodaySpecial("chinese");
+                          });
                         },
                         child: Container(
                             width: 70.0,
@@ -100,7 +127,11 @@ class MenuPage extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          print("hi");
+                          setState(() {
+                            currentDish = "south";
+                            mostPopular = f.getMostPopular("south");
+                            todaySpecial = f.getTodaySpecial("south");
+                          });
                         },
                         child: Container(
                             width: 70.0,
@@ -121,8 +152,8 @@ class MenuPage extends StatelessWidget {
                 ],
               ),
             ),
-            Carousal1(),
-            Carousal2(),
+            Carousal1(mostPopular, currentDish),
+            Carousal2(todaySpecial, currentDish),
           ],
         ),
       ],
