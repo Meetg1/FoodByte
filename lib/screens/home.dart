@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       appBar: AppBar(
           backgroundColor: const Color(0xFFFFFFFF),
           leading: Image(
@@ -39,8 +40,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onPressed: null)
           ]),
-      body: Container(child: _pages.elementAt(_selectedIndex)),
-      bottomNavigationBar: BottomNavigationBar(
+      body: SingleChildScrollView(
+          child: Container(child: _pages.elementAt(_selectedIndex))),
+          bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           selectedLabelStyle: TextStyle(
             fontFamily: 'Segoe UI',
