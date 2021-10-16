@@ -13,7 +13,7 @@ class Carousal1 extends StatelessWidget {
       Padding(
         padding: EdgeInsets.fromLTRB(16.0, 20.0, 50.0, 10.0),
         child: Text(
-          'Most Popular',
+          'Most Popular in $currentDish',
           style: TextStyle(
             fontFamily: 'Segoe UI',
             fontSize: 24,

@@ -38,13 +38,13 @@ class FoodBrain {
 // List mostPopular = [2, 3, 4];
 
   List<FoodItem> getMostPopular(String foodname) {
-    if (foodname == 'pizza') {
+    if (foodname == 'Pizzas') {
       pizzas.sort((b, a) => a.allTimeOrders.compareTo(b.allTimeOrders));
       return pizzas;
-    } else if (foodname == 'chinese') {
+    } else if (foodname == 'Chinese') {
       chinese.sort((b, a) => a.allTimeOrders.compareTo(b.allTimeOrders));
       return chinese;
-    } else if (foodname == 'burger') {
+    } else if (foodname == 'Burgers') {
       burgers.sort((b, a) => a.allTimeOrders.compareTo(b.allTimeOrders));
       return burgers;
     } else {
@@ -54,13 +54,13 @@ class FoodBrain {
   }
 
   List<FoodItem> getTodaySpecial(String foodname) {
-    if (foodname == 'pizza') {
+    if (foodname == 'Pizzas') {
       pizzas.sort((b, a) => a.todayOrders.compareTo(b.todayOrders));
       return pizzas;
-    } else if (foodname == 'chinese') {
+    } else if (foodname == 'Chinese') {
       chinese.sort((b, a) => a.todayOrders.compareTo(b.todayOrders));
       return chinese;
-    } else if (foodname == 'burger') {
+    } else if (foodname == 'Burgers') {
       burgers.sort((b, a) => a.todayOrders.compareTo(b.todayOrders));
       return burgers;
     } else {

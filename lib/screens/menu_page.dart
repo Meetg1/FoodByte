@@ -14,11 +14,11 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  String currentDish = "pizza";
+  String currentDish = "Pizzas";
 
-  List<FoodItem> mostPopular = f.getMostPopular("pizza");
+  List<FoodItem> mostPopular = f.getMostPopular("Pizzas");
 
-  List<FoodItem> todaySpecial = f.getTodaySpecial("pizza");
+  List<FoodItem> todaySpecial = f.getTodaySpecial("Pizzas");
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +49,9 @@ class _MenuPageState extends State<MenuPage> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            currentDish = "pizza";
-                            mostPopular = f.getMostPopular("pizza");
-                            todaySpecial = f.getTodaySpecial("pizza");
+                            currentDish = "Pizzas";
+                            mostPopular = f.getMostPopular("Pizzas");
+                            todaySpecial = f.getTodaySpecial("Pizzas");
                           });
                         },
                         child: Container(
@@ -75,9 +75,9 @@ class _MenuPageState extends State<MenuPage> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            currentDish = "burger";
-                            mostPopular = f.getMostPopular("burger");
-                            todaySpecial = f.getTodaySpecial("burger");
+                            currentDish = "Burgers";
+                            mostPopular = f.getMostPopular("Burgers");
+                            todaySpecial = f.getTodaySpecial("Burgers");
                           });
                         },
                         child: Container(
@@ -101,9 +101,9 @@ class _MenuPageState extends State<MenuPage> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            currentDish = "chinese";
-                            mostPopular = f.getMostPopular("chinese");
-                            todaySpecial = f.getTodaySpecial("chinese");
+                            currentDish = "Chinese";
+                            mostPopular = f.getMostPopular("Chinese");
+                            todaySpecial = f.getTodaySpecial("Chinese");
                           });
                         },
                         child: Container(
@@ -128,9 +128,9 @@ class _MenuPageState extends State<MenuPage> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            currentDish = "south";
-                            mostPopular = f.getMostPopular("south");
-                            todaySpecial = f.getTodaySpecial("south");
+                            currentDish = "South";
+                            mostPopular = f.getMostPopular("South");
+                            todaySpecial = f.getTodaySpecial("South");
                           });
                         },
                         child: Container(

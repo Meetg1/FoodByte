@@ -112,10 +112,10 @@ class ProfilePage extends StatelessWidget {
                 color: const Color(0xff707070),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 15),
             Container(
               width: double.infinity,
-              height: 200,
+              // height: 25,
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -125,7 +125,7 @@ class ProfilePage extends StatelessWidget {
                   )),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                    const EdgeInsets.fromLTRB(16, 0, 0, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
