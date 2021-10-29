@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
-
+import 'package:foodbyte/screens/food_detail.dart';
 class Carousal1 extends StatelessWidget {
   final List<FoodItem> mostPopular;
   final String currentDish;
@@ -90,7 +90,9 @@ class Carousal1 extends StatelessWidget {
                                       )),
                                   // color: Colors.black,
                                   child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>food_detail()));
+                                    },
                                     child: Text(
                                       'ADD',
                                       style: TextStyle(
