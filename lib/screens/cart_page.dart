@@ -16,7 +16,7 @@ class AddToCartMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           IconButton(
             onPressed: () {},
@@ -27,8 +27,8 @@ class AddToCartMenu extends StatelessWidget {
           InkWell(
             onTap: () => print('hello'),
             child: Container(
-              width: 50.0,
-              height: 50.0,
+              width: 40.0,
+              height: 40.0,
               decoration: BoxDecoration(
                 color: Color(0xff9fe8a9),
                 border: Border.all(color: Colors.white, width: 2.0),
@@ -36,7 +36,7 @@ class AddToCartMenu extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  ' $productCounter',
+                  ' $productCounter ',
                   style: new TextStyle(
                       fontSize: 20.0,
                       color: Colors.green[900],
@@ -255,155 +255,253 @@ class PromoCodeWidget extends StatelessWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(left: 5),
-          child: Text(
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 8,
+          ),
+          Text(
             "Your Food Cart",
             style: TextStyle(
-                fontSize: 30,
-                color: Color(0xFF3a3a3b),
-                fontWeight: FontWeight.w600),
-            textAlign: TextAlign.left,
+              fontFamily: 'Georgia',
+              fontSize: 24,
+              color: Colors.black,
+            ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          width: double.infinity,
-          height: 130,
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: Color(0xFFfae3e2).withOpacity(0.3),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(0, 1),
-            ),
-          ]),
-          child: Card(
-            color: Colors.white,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5.0),
+          SizedBox(
+            height: 18,
+          ),
+          Container(
+            width: double.infinity,
+            height: 140,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Color(0xFFfae3e2).withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 1),
               ),
-            ),
-            child: Container(
-              alignment: Alignment.center,
-              padding: EdgeInsets.only(left: 5, right: 0, top: 10, bottom: 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Center(
-                          child: Image.asset(
-                        "assets/images/burger1.jpg",
-                        width: 150,
-                        height: 150,
-                      )),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 5,
+            ]),
+            child: Card(
+              color: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Container(
+                // alignment: Alignment.center,
+                // padding: EdgeInsets.only(left: 5, right: 0, top: 10, bottom: 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        "assets/images/burger2.jpg",
+                        // width: 130,
+                        height: 180,
                       ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(5.0, 0, 0, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  child: Text(
-                                    "Indian Burger",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Color(0xFF3a3a3b),
-                                        fontWeight: FontWeight.w400),
-                                    textAlign: TextAlign.left,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
+                          child: Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 130,
+                                    child: Text(
+                                      "Indian Burger Burger ",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF3a3a3b),
+                                          fontWeight: FontWeight.w400),
+                                      // textAlign: TextAlign.left,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  child: Text(
-                                    "₹500/-",
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: Color(0xFF3a3a3b),
-                                        fontWeight: FontWeight.w400),
-                                    textAlign: TextAlign.left,
+                                  SizedBox(
+                                    height: 5,
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 80,
-                            ),
-                            Container(
-                              alignment: Alignment.centerRight,
-                              child: IconButton(
+                                  Container(
+                                    child: Text(
+                                      "₹500/-",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF3a3a3b),
+                                          fontWeight: FontWeight.w400),
+                                      // textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              IconButton(
                                 onPressed: () {},
                                 icon: Image.asset(
                                   "assets/images/delete_icon.png",
                                   color: Colors.red,
-                                  width: 27,
-                                  height: 27,
+                                  width: 25,
+                                  height: 25,
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                          alignment: Alignment.centerRight,
-                          child: AddToCartMenu(2))
-                    ],
-                  ),
-                ],
+                        SizedBox(height: 10),
+                        AddToCartMenu(2)
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        PromoCodeWidget(),
-        SizedBox(
-          height: 10,
-        ),
-        TotalCalculationWidget(),
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-            child: ElevatedButton(
-          onPressed: () {},
-          child: Text('Proceed', style: TextStyle(fontSize: 20)),
-          style: ButtonStyle(
-              padding: MaterialStateProperty.all(
-                  EdgeInsets.fromLTRB(20, 10, 20, 10)),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.red)))),
-        )),
-      ],
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: double.infinity,
+            height: 140,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Color(0xFFfae3e2).withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 1),
+              ),
+            ]),
+            child: Card(
+              color: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Container(
+                // alignment: Alignment.center,
+                // padding: EdgeInsets.only(left: 5, right: 0, top: 10, bottom: 0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        "assets/images/burger2.jpg",
+                        // width: 130,
+                        height: 180,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
+                          child: Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 130,
+                                    child: Text(
+                                      "Indian Burger Burger ",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF3a3a3b),
+                                          fontWeight: FontWeight.w400),
+                                      // textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "₹500/-",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: Color(0xFF3a3a3b),
+                                          fontWeight: FontWeight.w400),
+                                      // textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Image.asset(
+                                  "assets/images/delete_icon.png",
+                                  color: Colors.red,
+                                  width: 25,
+                                  height: 25,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        AddToCartMenu(2)
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          PromoCodeWidget(),
+          SizedBox(
+            height: 10,
+          ),
+          TotalCalculationWidget(),
+          SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Container(
+                child: ElevatedButton(
+              onPressed: () {},
+              child: Text('Proceed', style: TextStyle(fontSize: 20)),
+              style: ButtonStyle(
+                  padding: MaterialStateProperty.all(
+                      EdgeInsets.fromLTRB(20, 10, 20, 10)),
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.white),
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.red)))),
+            )),
+          ),
+        ],
+      ),
     );
   }
 }

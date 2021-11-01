@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
+import 'package:foodbyte/screens/food_detail_page.dart';
 
 class Carousal2 extends StatelessWidget {
   final List<FoodItem> todaySpecial;
@@ -61,7 +62,7 @@ class Carousal2 extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              todaySpecial[index].description,
+                              todaySpecial[index].subtitle,
                               style: TextStyle(
                                 fontSize: 11.0,
                                 fontWeight: FontWeight.w600,
@@ -89,7 +90,15 @@ class Carousal2 extends StatelessWidget {
                                       )),
                                   // color: Colors.black,
                                   child: TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => FoodDetailPage(
+                                              'assets/images/${todaySpecial[index].imageName}',
+                                              todaySpecial[index].name,
+                                              "₹${todaySpecial[index].price}/-",
+                                              todaySpecial[index]
+                                                  .description)));
+                                    },
                                     child: Text(
                                       'ADD',
                                       style: TextStyle(

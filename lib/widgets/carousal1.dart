@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
-import 'package:foodbyte/screens/food_detail.dart';
+import 'package:foodbyte/screens/food_detail_page.dart';
+
 class Carousal1 extends StatelessWidget {
   final List<FoodItem> mostPopular;
   final String currentDish;
@@ -62,7 +63,7 @@ class Carousal1 extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              mostPopular[index].description,
+                              mostPopular[index].subtitle,
                               style: TextStyle(
                                 fontSize: 11.0,
                                 fontWeight: FontWeight.w600,
@@ -91,7 +92,12 @@ class Carousal1 extends StatelessWidget {
                                   // color: Colors.black,
                                   child: TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>food_detail()));
+                                      Navigator.of(context).push(MaterialPageRoute(
+                                          builder: (context) => FoodDetailPage(
+                                              'assets/images/${mostPopular[index].imageName}',
+                                              mostPopular[index].name,
+                                              "₹${mostPopular[index].price}/-",
+                                              mostPopular[index].description)));
                                     },
                                     child: Text(
                                       'ADD',
