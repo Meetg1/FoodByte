@@ -433,7 +433,9 @@ class _CartPageState extends State<CartPage> {
                           side: BorderSide(color: Colors.red)))),
             )),
           ),
+
         ],
+
       ),
     );
   }

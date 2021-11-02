@@ -9,13 +9,12 @@ class SignUpPage extends StatefulWidget {
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage>{
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Segoe UI';
     double defaultFontSize = 17;
     double defaultIconSize = 20;
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
@@ -29,212 +28,217 @@ class _SignUpPageState extends State<SignUpPage>{
             children: <Widget>[
               Flexible(
                 flex: 9,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      width: 230,
-                      height: 100,
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/images/logo_login.jpg",
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        width: 230,
+                        height: 100,
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          "assets/images/logo_login.jpg",
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                        'FoodByte',
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text('FoodByte',
+                          style: TextStyle(
+                            fontFamily: 'Tempus Sans ITC',
+                            fontSize: 40.0,
+                          )),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.person,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                              color: Color(0xFF666666),
+                              fontFamily: defaultFontFamily,
+                              fontSize: defaultFontSize),
+                          hintText: "Full Name",
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                              color: Color(0xFF666666),
+                              fontFamily: defaultFontFamily,
+                              fontSize: defaultFontSize),
+                          hintText: "Email Id",
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.phone,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                              color: Color(0xFF666666),
+                              fontFamily: defaultFontFamily,
+                              fontSize: defaultFontSize),
+                          hintText: "Phone Number",
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.lock_outline,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.remove_red_eye,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                            color: Color(0xFF666666),
+                            fontFamily: defaultFontFamily,
+                            fontSize: defaultFontSize,
+                          ),
+                          hintText: "Password",
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
+                        showCursor: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          filled: true,
+                          prefixIcon: Icon(
+                            Icons.lock_outline,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.remove_red_eye,
+                            color: Color(0xFF666666),
+                            size: defaultIconSize,
+                          ),
+                          fillColor: Color(0xFFF2F3F5),
+                          hintStyle: TextStyle(
+                            color: Color(0xFF666666),
+                            fontFamily: defaultFontFamily,
+                            fontSize: defaultFontSize,
+                          ),
+                          hintText: "Confirm Password",
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Container(
+                        width: double.infinity,
+                        child: Text(
+                          "Forgot your password?",
+                          style: TextStyle(
+                            color: Color(0xFF666666),
+                            fontFamily: defaultFontFamily,
+                            fontSize: defaultFontSize,
+                            fontStyle: FontStyle.normal,
+                          ),
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      SignUpButtonWidget(),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Or',
                         style: TextStyle(
-                          fontFamily: 'Tempus Sans ITC',
-                          fontSize: 40.0,
-                        )
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextField(
-                      showCursor: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        fillColor: Color(0xFFF2F3F5),
-                        hintStyle: TextStyle(
-                            color: Color(0xFF666666),
-                            fontFamily: defaultFontFamily,
-                            fontSize: defaultFontSize),
-                        hintText: "Full Name",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextField(
-                      showCursor: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        fillColor: Color(0xFFF2F3F5),
-                        hintStyle: TextStyle(
-                            color: Color(0xFF666666),
-                            fontFamily: defaultFontFamily,
-                            fontSize: defaultFontSize),
-                        hintText: "Email Id",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextField(
-                      showCursor: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        prefixIcon: Icon(
-                          Icons.phone,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        fillColor: Color(0xFFF2F3F5),
-                        hintStyle: TextStyle(
-                            color: Color(0xFF666666),
-                            fontFamily: defaultFontFamily,
-                            fontSize: defaultFontSize),
-                        hintText: "Phone Number",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextField(
-                      showCursor: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.remove_red_eye,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        fillColor: Color(0xFFF2F3F5),
-                        hintStyle: TextStyle(
                           color: Color(0xFF666666),
                           fontFamily: defaultFontFamily,
-                          fontSize: defaultFontSize,
-                        ),
-                        hintText: "Password",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    TextField(
-                      showCursor: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(
-                            width: 0,
-                            style: BorderStyle.none,
-                          ),
-                        ),
-                        filled: true,
-                        prefixIcon: Icon(
-                          Icons.lock_outline,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.remove_red_eye,
-                          color: Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        fillColor: Color(0xFFF2F3F5),
-                        hintStyle: TextStyle(
-                          color: Color(0xFF666666),
-                          fontFamily: defaultFontFamily,
-                          fontSize: defaultFontSize,
-                        ),
-                        hintText: "Confirm Password",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: Text(
-                        "Forgot your password?",
-                        style: TextStyle(
-                          color: Color(0xFF666666),
-                          fontFamily: defaultFontFamily,
-                          fontSize: defaultFontSize,
+                          fontSize: 17.0,
                           fontStyle: FontStyle.normal,
                         ),
-                        textAlign: TextAlign.end,
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    SignUpButtonWidget(),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Or',
-                      style: TextStyle(
-                        color: Color(0xFF666666),
-                        fontFamily: defaultFontFamily,
-                        fontSize: 17.0,
-                        fontStyle: FontStyle.normal,
+                      SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    GoogleLogin()
-                    //FacebookGoogleLogin()
-                  ],
+                      GoogleLogin()
+                      //FacebookGoogleLogin()
+                    ],
+                  ),
                 ),
               ),
               Flexible(
@@ -304,25 +308,24 @@ class SignUpButtonWidget extends StatelessWidget {
         ],
       ),
       child: MaterialButton(
-          highlightColor: Colors.transparent,
-          splashColor: Colors.redAccent,
-          onPressed: () => {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => HomePage()))
-          },
-          //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-          child: Padding(
-            padding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
-            child: Text(
-              "SIGN UP",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontFamily: "WorkSansBold"),
-            ),
+        highlightColor: Colors.transparent,
+        splashColor: Colors.redAccent,
+        onPressed: () => {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => HomePage()))
+        },
+        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
+          child: Text(
+            "SIGN UP",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.0,
+                fontFamily: "WorkSansBold"),
           ),
-          ),
+        ),
+      ),
     );
   }
 }

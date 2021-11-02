@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 class FoodDetailPage extends StatelessWidget {
   // int _selectedIndex = 0;
   final FoodItem item;
+
   // final String title;
   // final String price;
   // final String description;
