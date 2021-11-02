@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:foodbyte/models/food_cart.dart';
+import 'package:foodbyte/models/food_item.dart';
+import 'package:provider/provider.dart';
 
 class FoodDetailPage extends StatelessWidget {
   // int _selectedIndex = 0;
-  final String image;
-  final String title;
-  final String price;
-  final String description;
+  final FoodItem item;
+  // final String title;
+  // final String price;
+  // final String description;
 
-  FoodDetailPage(this.image, this.title, this.price, this.description);
+  // FoodDetailPage(this.image, this.title, this.price, this.description);
+  FoodDetailPage(this.item);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,7 @@ class FoodDetailPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 0),
               child: Center(
                 child: Image(
-                  image: AssetImage(image),
+                  image: AssetImage("assets/images/${item.imageName}"),
                   width: 410,
                   height: 200,
                 ),
@@ -59,7 +63,7 @@ class FoodDetailPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    title,
+                    item.name,
                     style: TextStyle(
                         fontSize: 20,
                         color: Color(0xFF3a3a3b),
@@ -67,7 +71,7 @@ class FoodDetailPage extends StatelessWidget {
                     textAlign: TextAlign.left,
                   ),
                   Text(
-                    price,
+                    "${item.price}/-",
                     style: TextStyle(
                         fontSize: 20,
                         color: Color(0xFF3a3a3b),
@@ -81,9 +85,60 @@ class FoodDetailPage extends StatelessWidget {
               height: 10,
             ),
             Container(
-                padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
-                alignment: Alignment.centerRight,
-                child: AddToCartMenu(1)),
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+              alignment: Alignment.centerRight,
+              child: Container(
+                child: Consumer<FoodCart>(builder: (context, foodcart, child) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: () {
+                          foodcart.removeItem(item, foodcart.cart[item]! - 1);
+                        },
+                        icon: Icon(Icons.remove),
+                        color: Colors.black,
+                        iconSize: 35,
+                      ),
+                      InkWell(
+                        onTap: () => print('hello'),
+                        child: Container(
+                          width: 200.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            border: Border.all(color: Colors.white, width: 2.0),
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Center(
+                            child: Text(
+                              foodcart.cart[item] == null
+                                  ? ("0")
+                                  : ' ${foodcart.cart[item]} ',
+                              style: new TextStyle(
+                                  fontSize: 22.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          if (foodcart.cart[item] == null)
+                            foodcart.addItem(item, 1);
+                          else
+                            foodcart.addItem(item, foodcart.cart[item]! + 1);
+                        },
+                        icon: Icon(Icons.add),
+                        color: Color(0xFFfd2c2c),
+                        iconSize: 35,
+                      ),
+                    ],
+                  );
+                }),
+              ),
+            ),
             SizedBox(
               height: 30,
             ),
@@ -93,7 +148,7 @@ class FoodDetailPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    item.name,
                     style: TextStyle(
                       fontSize: 30,
                       letterSpacing: 1,
@@ -117,7 +172,7 @@ class FoodDetailPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    description,
+                    item.description,
                     style: TextStyle(
                         fontSize: 20,
                         color: Color(0xFF3a3a3b),
@@ -130,56 +185,6 @@ class FoodDetailPage extends StatelessWidget {
           ],
         ),
       )),
-    );
-  }
-}
-
-class AddToCartMenu extends StatelessWidget {
-  int productCounter;
-
-  AddToCartMenu(this.productCounter);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.remove),
-            color: Colors.black,
-            iconSize: 35,
-          ),
-          InkWell(
-            onTap: () => print('hello'),
-            child: Container(
-              width: 200.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                border: Border.all(color: Colors.white, width: 2.0),
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: Center(
-                child: Text(
-                  ' $productCounter',
-                  style: new TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
-            color: Color(0xFFfd2c2c),
-            iconSize: 35,
-          ),
-        ],
-      ),
     );
   }
 }

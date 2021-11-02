@@ -91,13 +91,11 @@ class Carousal2 extends StatelessWidget {
                                   // color: Colors.black,
                                   child: TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => FoodDetailPage(
-                                              'assets/images/${todaySpecial[index].imageName}',
-                                              todaySpecial[index].name,
-                                              "₹${todaySpecial[index].price}/-",
-                                              todaySpecial[index]
-                                                  .description)));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  FoodDetailPage(
+                                                      todaySpecial[index])));
                                     },
                                     child: Text(
                                       'ADD',

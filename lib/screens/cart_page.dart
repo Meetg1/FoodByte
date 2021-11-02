@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foodbyte/models/food_item.dart';
+import 'package:provider/provider.dart';
+import 'package:foodbyte/models/food_cart.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -7,211 +10,23 @@ class CartPage extends StatefulWidget {
   _CartPageState createState() => _CartPageState();
 }
 
-class AddToCartMenu extends StatelessWidget {
-  int productCounter;
+// class AddToCartMenu extends StatelessWidget {
+//   int productCounter;
 
-  AddToCartMenu(this.productCounter);
+//   AddToCartMenu(this.productCounter);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.remove),
-            color: Colors.black,
-            iconSize: 22,
-          ),
-          InkWell(
-            onTap: () => print('hello'),
-            child: Container(
-              width: 40.0,
-              height: 40.0,
-              decoration: BoxDecoration(
-                color: Color(0xff9fe8a9),
-                border: Border.all(color: Colors.white, width: 2.0),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              child: Center(
-                child: Text(
-                  ' $productCounter ',
-                  style: new TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.green[900],
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
-            color: Color(0xFFfd2c2c),
-            iconSize: 22,
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return;
+//   }
+// }
 
-class TotalCalculationWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: double.infinity,
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          color: Color(0xFFfae3e2).withOpacity(0.1),
-          spreadRadius: 1,
-          blurRadius: 1,
-          offset: Offset(0, 1),
-        ),
-      ]),
-      child: Card(
-        color: Colors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(5.0),
-          ),
-        ),
-        child: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.only(left: 25, right: 30, top: 10, bottom: 10),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Item total",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "₹500",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Delivery Charge",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "₹50",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Taxes & Charges",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "₹20.2",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Discount",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "₹100",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-              Divider(
-                height: 15,
-                thickness: 2,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    "Total",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
-                  Text(
-                    "₹670.2/-",
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+// class TotalCalculationWidget extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ;
+//   }
+// }
 
 class PromoCodeWidget extends StatelessWidget {
   @override
@@ -261,7 +76,7 @@ class _CartPageState extends State<CartPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 8,
+            height: 15,
           ),
           Text(
             "Your Food Cart",
@@ -276,7 +91,7 @@ class _CartPageState extends State<CartPage> {
           ),
           Container(
             width: double.infinity,
-            height: 140,
+            height: 150,
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                 color: Color(0xFFfae3e2).withOpacity(0.3),
@@ -285,201 +100,319 @@ class _CartPageState extends State<CartPage> {
                 offset: Offset(0, 1),
               ),
             ]),
-            child: Card(
-              color: Colors.white,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(5.0),
-                ),
-              ),
-              child: Container(
-                // alignment: Alignment.center,
-                // padding: EdgeInsets.only(left: 5, right: 0, top: 10, bottom: 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      child: Image.asset(
-                        "assets/images/burger2.jpg",
-                        // width: 130,
-                        height: 180,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
-                          child: Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 130,
-                                    child: Text(
-                                      "Indian Burger Burger ",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF3a3a3b),
-                                          fontWeight: FontWeight.w400),
-                                      // textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "₹500/-",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF3a3a3b),
-                                          fontWeight: FontWeight.w400),
-                                      // textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Image.asset(
-                                  "assets/images/delete_icon.png",
-                                  color: Colors.red,
-                                  width: 25,
-                                  height: 25,
-                                ),
-                              )
-                            ],
+            child: Consumer<FoodCart>(builder: (context, foodcart, child) {
+              return ListView.builder(
+                  // key: Key(currentDish),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: foodcart.cart.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var cart = foodcart.cart; //cart is a map
+                    FoodItem key = cart.keys.elementAt(index);
+                    return Container(
+                      // key: Key(index.toString()),
+                      width: 320.0,
+                      child: Card(
+                        color: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5.0),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        AddToCartMenu(2)
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    bottomLeft: Radius.circular(20)),
+                                child: Image(
+                                  height: 135.0,
+                                  image: AssetImage(
+                                    "assets/images/${key.imageName}",
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 10),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 130,
+                                              child: Text(
+                                                key.name,
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Color(0xFF3a3a3b),
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                              child: Text(
+                                                "₹${key.price}/-",
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Color(0xFF3a3a3b),
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                                // textAlign: TextAlign.left,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        // SizedBox(
+                                        //   width: 15,
+                                        // ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 20),
+                                    Container(
+                                      child: Row(
+                                        // mainAxisAlignment: MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          IconButton(
+                                            onPressed: () {
+                                              foodcart.removeItem(
+                                                  key, cart[key]! - 1);
+                                            },
+                                            icon: Icon(Icons.remove),
+                                            color: Colors.black,
+                                            iconSize: 22,
+                                          ),
+                                          InkWell(
+                                            onTap: () => print('hello'),
+                                            child: Container(
+                                              width: 40.0,
+                                              height: 40.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xff9fe8a9),
+                                                border: Border.all(
+                                                    color: Colors.white,
+                                                    width: 2.0),
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  ' ${cart[key]} ',
+                                                  style: new TextStyle(
+                                                      fontSize: 20.0,
+                                                      color: Colors.green[900],
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              foodcart.addItem(
+                                                  key, cart[key]! + 1);
+                                            },
+                                            icon: Icon(Icons.add),
+                                            color: Color(0xFFfd2c2c),
+                                            iconSize: 22,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image.asset(
+                                    "assets/images/delete_icon.png",
+                                    color: Colors.red,
+                                    width: 25,
+                                    height: 25,
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  });
+            }),
           ),
           SizedBox(
             height: 10,
-          ),
-          Container(
-            width: double.infinity,
-            height: 140,
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                color: Color(0xFFfae3e2).withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: Offset(0, 1),
-              ),
-            ]),
-            child: Card(
-              color: Colors.white,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(5.0),
-                ),
-              ),
-              child: Container(
-                // alignment: Alignment.center,
-                // padding: EdgeInsets.only(left: 5, right: 0, top: 10, bottom: 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      child: Image.asset(
-                        "assets/images/burger2.jpg",
-                        // width: 130,
-                        height: 180,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
-                          child: Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 130,
-                                    child: Text(
-                                      "Indian Burger Burger ",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF3a3a3b),
-                                          fontWeight: FontWeight.w400),
-                                      // textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      "₹500/-",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Color(0xFF3a3a3b),
-                                          fontWeight: FontWeight.w400),
-                                      // textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                width: 15,
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Image.asset(
-                                  "assets/images/delete_icon.png",
-                                  color: Colors.red,
-                                  width: 25,
-                                  height: 25,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        AddToCartMenu(2)
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ),
           PromoCodeWidget(),
           SizedBox(
             height: 10,
           ),
-          TotalCalculationWidget(),
+          Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                color: Color(0xFFfae3e2).withOpacity(0.1),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: Offset(0, 1),
+              ),
+            ]),
+            child: Card(
+              color: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: Container(
+                alignment: Alignment.center,
+                padding:
+                    EdgeInsets.only(left: 25, right: 30, top: 10, bottom: 10),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Item total",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "₹500",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Delivery Charge",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "₹50",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Taxes & Charges",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "₹20.2",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Discount",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "₹100",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w400),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                    Divider(
+                      height: 15,
+                      thickness: 2,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Total",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.left,
+                        ),
+                        Text(
+                          "₹670.2/-",
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Color(0xFF3a3a3b),
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.left,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           SizedBox(
             height: 10,
           ),
