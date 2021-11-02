@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
 import 'package:foodbyte/screens/home.dart';
 import 'package:provider/provider.dart';
+import 'package:foodbyte/screens/signup_page.dart';
 
 void main() {
   runApp(MyApp());
