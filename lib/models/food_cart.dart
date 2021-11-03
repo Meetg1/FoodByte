@@ -20,10 +20,18 @@ class FoodCart extends ChangeNotifier {
     // FoodItem(7, 'Paneer King', 'burger3.jfif',
     //     'Fresh crumbled Paneer and red, yellow and green peppers', 130): 6
   }; //dart map
-  // // List<FoodItem> cartitems = [];
+
+  double itemtotal = 0;
+  double deliveryCharge = 30;
+  double taxes = 0;
+  double discount = 0;
+  double total = 0;
 
   void addItem(FoodItem item, int quantity) {
     cart[item] = quantity;
+    itemtotal += item.price;
+    taxes = itemtotal * 0.18;
+    total = itemtotal + deliveryCharge + taxes - discount;
     print(cart);
     notifyListeners();
   }
@@ -31,11 +39,14 @@ class FoodCart extends ChangeNotifier {
   void removeItem(FoodItem item, int quantity) {
     if (quantity == 0) {
       cart.remove(item);
+      itemtotal -= item.price;
     } else {
       cart[item] = quantity;
+      itemtotal -= item.price;
+      taxes = itemtotal * 0.18;
+      total = itemtotal + deliveryCharge + taxes - discount;
+      print(cart);
     }
     notifyListeners();
   }
-
-  // void getCartItems() {}
 }

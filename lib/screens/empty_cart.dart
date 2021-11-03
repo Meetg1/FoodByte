@@ -1,56 +1,39 @@
 import 'package:flutter/material.dart';
 
-class empty_cart extends StatelessWidget {
-  const empty_cart({Key? key}) : super(key: key);
-
+class EmptyCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          backgroundColor: const Color(0xFFFFFFFF),
-          leading: Image(
-            image: AssetImage('assets/images/logo_login.jpg'),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          margin: EdgeInsets.fromLTRB(0, 80, 30, 60),
+          child: Image(
+            image: AssetImage('assets/images/empty-cart.png'),
+            width: 250,
+            height: 250,
           ),
-          title: Center(
-            child: Text(
-              "FoodByte",
-              style: TextStyle(
-                fontFamily: 'Tempus Sans ITC',
-                fontSize: 40,
-                color: const Color(0xff000000),
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(
-                  Icons.menu_outlined,
-                ),
-                onPressed: null)
-          ]),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 80, 30, 80),
-            child: Center(
-              child: Image(
-                  image: AssetImage('assets/images/empty-cart.png'),
-                width: 250,
-                height: 250,
-              ),
-            ),
-          ),
-          Text(
-            'Your Cart is Empty!',
+        ),
+        Text(
+          'Your Cart is Empty!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 35, fontWeight: FontWeight.bold, fontFamily: 'Georgia'),
+        ),
+        SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            "Looks like you haven't added anything to the cart yet.",
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-                fontFamily: 'Georgia'
+              fontSize: 22,
+              fontWeight: FontWeight.w200,
+              fontFamily: 'Georgia',
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
