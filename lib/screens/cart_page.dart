@@ -244,7 +244,11 @@ class _CartPageState extends State<CartPage> {
                                   ],
                                 ),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    for (var i = cart[key]!; i > 0; i--) {
+                                      foodcart.removeItem(key, i - 1);
+                                    }
+                                  },
                                   icon: Image.asset(
                                     "assets/images/delete_icon.png",
                                     color: Colors.red,
