@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'food_item.dart';
 
 class FoodCart extends ChangeNotifier {

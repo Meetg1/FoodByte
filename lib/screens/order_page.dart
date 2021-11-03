@@ -1,98 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
-import 'package:provider/provider.dart';
-import 'package:foodbyte/models/food_cart.dart';
-import 'package:foodbyte/screens/empty_cart.dart';
+import 'package:foodbyte/models/order.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({Key? key}) : super(key: key);
+class OrderPage extends StatelessWidget {
+  final Order order;
+  OrderPage(this.order);
 
-  @override
-  _CartPageState createState() => _CartPageState();
-}
-
-// class AddToCartMenu extends StatelessWidget {
-//   int productCounter;
-
-//   AddToCartMenu(this.productCounter);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return;
-//   }
-// }
-
-// class TotalCalculationWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ;
-//   }
-// }
-
-class PromoCodeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        padding: EdgeInsets.only(left: 3, right: 3),
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Color(0xFFfae3e2).withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 1,
-            offset: Offset(0, 1),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+          backgroundColor: const Color(0xFFFFFFFF),
+          leading: Image(
+            image: AssetImage('assets/images/logo_login.jpg'),
           ),
-        ]),
-        child: TextFormField(
-          decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
+          title: Center(
+            child: Text(
+              "FoodByte",
+              style: TextStyle(
+                fontFamily: 'Tempus Sans ITC',
+                fontSize: 40,
+                color: const Color(0xff000000),
               ),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xFFe6e1e1), width: 1.0),
-                  borderRadius: BorderRadius.circular(7)),
-              fillColor: Colors.white,
-              hintText: 'Add Your Promo Code',
-              filled: true,
-              suffixIcon: IconButton(
-                  icon: Icon(
-                    Icons.local_offer,
-                    color: Color(0xFFfd2c2c),
-                  ),
-                  onPressed: () {
-                    debugPrint('222');
-                  })),
-        ),
-      ),
-    );
-  }
-}
-
-class _CartPageState extends State<CartPage> {
-  @override
-  Widget build(BuildContext context) {
-    if (Provider.of<FoodCart>(context).cart.isEmpty) {
-      print("empty");
-      return EmptyCart();
-    } else
-      print("ok");
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Consumer<FoodCart>(builder: (context, foodcart, child) {
-        var cart = foodcart.cart;
-        return Column(
+            ),
+          ),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(
+                  Icons.menu_outlined,
+                ),
+                onPressed: null)
+          ]),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 15,
             ),
-            Text(
-              "Your Food Cart",
-              style: TextStyle(
-                fontFamily: 'Georgia',
-                fontSize: 24,
-                color: Colors.black,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Order ID ${order.orderid}",
+                  style: TextStyle(
+                    fontFamily: 'Georgia',
+                    fontSize: 24,
+                    color: Colors.black,
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0x70bbffbd),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.5),
+                    child: Text(
+                      'Delivered',
+                      style: TextStyle(
+                        fontFamily: 'Segoe UI',
+                        fontSize: 16,
+                        color: Colors.green[900],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 18,
@@ -111,9 +86,9 @@ class _CartPageState extends State<CartPage> {
               child: ListView.builder(
                   // key: Key(currentDish),
                   scrollDirection: Axis.horizontal,
-                  itemCount: cart.length,
+                  itemCount: order.foodItems.length,
                   itemBuilder: (BuildContext context, int index) {
-                    FoodItem key = cart.keys.elementAt(index);
+                    FoodItem key = order.foodItems.keys.elementAt(index);
                     return Container(
                       // key: Key(index.toString()),
                       width: 320.0,
@@ -147,7 +122,7 @@ class _CartPageState extends State<CartPage> {
                               children: [
                                 Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     SizedBox(
                                       height: 5,
@@ -191,67 +166,32 @@ class _CartPageState extends State<CartPage> {
                                       ],
                                     ),
                                     SizedBox(height: 20),
-                                    Container(
-                                      child: Row(
-                                        // mainAxisAlignment: MainAxisAlignment.start,
-                                        children: <Widget>[
-                                          IconButton(
-                                            onPressed: () {
-                                              foodcart.removeItem(
-                                                  key, cart[key]! - 1);
-                                            },
-                                            icon: Icon(Icons.remove),
-                                            color: Colors.black,
-                                            iconSize: 22,
+                                    InkWell(
+                                      onTap: () => print('hello'),
+                                      child: Container(
+                                        width: 40.0,
+                                        height: 40.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xff9fe8a9),
+                                          border: Border.all(
+                                              color: Colors.white, width: 2.0),
+                                          borderRadius:
+                                              BorderRadius.circular(5.0),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            ' ${order.foodItems[key]} ',
+                                            style: new TextStyle(
+                                                fontSize: 20.0,
+                                                color: Colors.green[900],
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                          InkWell(
-                                            onTap: () => print('hello'),
-                                            child: Container(
-                                              width: 40.0,
-                                              height: 40.0,
-                                              decoration: BoxDecoration(
-                                                color: Color(0xff9fe8a9),
-                                                border: Border.all(
-                                                    color: Colors.white,
-                                                    width: 2.0),
-                                                borderRadius:
-                                                    BorderRadius.circular(5.0),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  ' ${cart[key]} ',
-                                                  style: new TextStyle(
-                                                      fontSize: 20.0,
-                                                      color: Colors.green[900],
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          IconButton(
-                                            onPressed: () {
-                                              foodcart.addItem(
-                                                  key, cart[key]! + 1);
-                                            },
-                                            icon: Icon(Icons.add),
-                                            color: Color(0xFFfd2c2c),
-                                            iconSize: 22,
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Image.asset(
-                                    "assets/images/delete_icon.png",
-                                    color: Colors.red,
-                                    width: 25,
-                                    height: 25,
-                                  ),
-                                )
+                                SizedBox(width: 10),
                               ],
                             )
                           ],
@@ -262,10 +202,6 @@ class _CartPageState extends State<CartPage> {
             ),
             SizedBox(
               height: 20,
-            ),
-            PromoCodeWidget(),
-            SizedBox(
-              height: 10,
             ),
             Container(
               alignment: Alignment.center,
@@ -307,7 +243,7 @@ class _CartPageState extends State<CartPage> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            "₹${foodcart.itemtotal}",
+                            "₹${order.itemtotal}",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF3a3a3b),
@@ -331,7 +267,7 @@ class _CartPageState extends State<CartPage> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            "₹${foodcart.deliveryCharge}",
+                            "₹${order.deliveryCharge}",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF3a3a3b),
@@ -355,7 +291,7 @@ class _CartPageState extends State<CartPage> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            "₹${foodcart.taxes.toStringAsFixed(1)}",
+                            "₹${order.taxes.toStringAsFixed(1)}",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF3a3a3b),
@@ -379,7 +315,7 @@ class _CartPageState extends State<CartPage> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            "₹${foodcart.discount}",
+                            "₹${order.discount}",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF3a3a3b),
@@ -404,7 +340,7 @@ class _CartPageState extends State<CartPage> {
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            "₹${foodcart.total}/-",
+                            "₹${order.total}/-",
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color(0xFF3a3a3b),
@@ -418,30 +354,10 @@ class _CartPageState extends State<CartPage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: Container(
-                  child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Proceed', style: TextStyle(fontSize: 20)),
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.fromLTRB(80, 10, 80, 10)),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.red),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.red)))),
-              )),
-            ),
+            Text("DELIVERED ON ${order.deliveryDate.substring(0, 16)}")
           ],
-        );
-      }),
+        ),
+      ),
     );
   }
 }

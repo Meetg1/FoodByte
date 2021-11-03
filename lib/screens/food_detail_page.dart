@@ -169,16 +169,19 @@ class FoodDetailPage extends StatelessWidget {
             Row(
               children: [
                 SizedBox(
-                  width: 20,
+                  width: 18,
                 ),
                 Expanded(
-                  child: Text(
-                    item.description,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xFF3a3a3b),
-                        fontWeight: FontWeight.w400),
-                    textAlign: TextAlign.left,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: Text(
+                      item.description,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF3a3a3b),
+                          fontWeight: FontWeight.w400),
+                      textAlign: TextAlign.justify,
+                    ),
                   ),
                 ),
               ],
