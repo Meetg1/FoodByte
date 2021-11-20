@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "921839381344",
+    "project_id": "foodbyte-8a2df",
+    "storage_bucket": "foodbyte-8a2df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921839381344:android:fb9769574bcd1d46f90c05",
+        "android_client_info": {
+          "package_name": "com.ksm.foodbyte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921839381344-2qem1sh12umb7gkvhrqt5q7i20lbj78c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ksm.foodbyte",
+            "certificate_hash": "5deffc80c503ad00f82696ede18cecf334dc3e72"
+          }
+        },
+        {
+          "client_id": "921839381344-vpv1iaqkhmc7o2fsou19os38lsrij2qr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4H6XFR9Edfbza3HBK0b37SNQQV1c_uWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921839381344-vpv1iaqkhmc7o2fsou19os38lsrij2qr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
