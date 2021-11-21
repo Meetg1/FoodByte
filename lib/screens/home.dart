@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/menu_page.dart';
 import 'package:foodbyte/screens/profile_page.dart';
 import 'package:foodbyte/screens/cart_page.dart';
+import 'package:foodbyte/services/auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [MenuPage(), CartPage(), ProfilePage()];
-
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +37,12 @@ class _HomePageState extends State<HomePage> {
           actions: <Widget>[
             IconButton(
                 icon: Icon(
-                  Icons.menu_outlined,
+                  Icons.logout,
+                  color: const Color(0xff000000),
                 ),
-                onPressed: null)
+                onPressed: ()async{
+                  await _auth.signOut();
+                })
           ]),
       body: SingleChildScrollView(
           child: Container(child: _pages.elementAt(_selectedIndex))),
