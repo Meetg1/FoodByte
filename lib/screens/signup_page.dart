@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/login_page.dart';
 import 'package:foodbyte/services/auth.dart';
+import 'package:foodbyte/shared/loading.dart';
 
 class SignUpPage extends StatefulWidget {
   // const SignUpPage({Key? key}) : super(key: key);
 
   final Function toggleView;
+
   SignUpPage({required this.toggleView});
 
   @override
@@ -26,12 +28,14 @@ class _SignUpPageState extends State<SignUpPage> {
   String password = '';
   String confirm_password = '';
   String error = '';
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Segoe UI';
     double defaultFontSize = 17;
     double defaultIconSize = 20;
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -126,7 +130,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontSize: defaultFontSize),
                             hintText: "Email Id",
                           ),
-                          validator: (val) => EmailValidator.validate(val!) ? null : "Please enter a valid email",
+                          validator: (val) => EmailValidator.validate(val!)
+                              ? null
+                              : "Please enter a valid email",
                           onChanged: (val) {
                             setState(() {
                               email = val;
@@ -160,7 +166,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 fontSize: defaultFontSize),
                             hintText: "Phone Number",
                           ),
-                          validator: (val) => val!.length != 10 ? 'Enter a 10 chars long' : null,
+                          validator: (val) => val!.length != 10
+                              ? 'Enter a 10 chars long'
+                              : null,
                           onChanged: (val) {
                             setState(() {
                               phone = val;
@@ -201,12 +209,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             hintText: "Password",
                           ),
                           obscureText: true,
-                            controller: _pass,
-                            validator: (val){
-                              if(val!.isEmpty)
-                                return 'Empty';
-                              return null;
-                            },
+                          controller: _pass,
+                          validator: (val) {
+                            if (val!.isEmpty) return 'Empty';
+                            return null;
+                          },
                           onChanged: (val) {
                             setState(() {
                               password = val;
@@ -246,14 +253,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             hintText: "Confirm Password",
                           ),
-                            controller: _confirmPass,
-                            validator: (val){
-                              if(val!.isEmpty)
-                                return 'Empty';
-                              if(val != _pass.text)
-                                return 'Not Match';
-                              return null;
-                            },
+                          controller: _confirmPass,
+                          validator: (val) {
+                            if (val!.isEmpty) return 'Empty';
+                            if (val != _pass.text) return 'Not Match';
+                            return null;
+                          },
                           onChanged: (val) {
                             setState(() {
                               confirm_password = val;
@@ -298,11 +303,19 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: MaterialButton(
                             highlightColor: Colors.transparent,
                             splashColor: Colors.redAccent,
-                            onPressed: () async{
-                              if(_formKey.currentState!.validate()){
-                                dynamic result = await _auth.registerWithEmailAndPassword(email, password);
-                                if(result==null){
-                                  setState(()=> error = 'User Already exist');
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                setState(() {
+                                  loading = true;
+                                });
+                                dynamic result =
+                                    await _auth.registerWithEmailAndPassword(
+                                        email, password, name, phone);
+                                if (result == null) {
+                                  setState(() {
+                                    error = 'User Already exist';
+                                    loading = false;
+                                  });
                                 }
                               }
                             },
@@ -365,7 +378,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             widget.toggleView();
                           },
                           child: Container(
