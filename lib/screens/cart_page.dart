@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
+import 'package:foodbyte/screens/address_page.dart';
 import 'package:provider/provider.dart';
 import 'package:foodbyte/models/food_cart.dart';
 import 'package:foodbyte/screens/empty_cart.dart';
@@ -428,7 +429,9 @@ class _CartPageState extends State<CartPage> {
             Center(
               child: Container(
                   child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddressPage()));
+                },
                 child: Text('Proceed', style: TextStyle(fontSize: 20)),
                 style: ButtonStyle(
                     padding: MaterialStateProperty.all(
