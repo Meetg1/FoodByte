@@ -2,6 +2,9 @@
 import 'package:flutter/foundation.dart';
 // import 'package:provider/provider.dart';
 import 'food_item.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 class FoodCart extends ChangeNotifier {
   var cart = <FoodItem, int>{
