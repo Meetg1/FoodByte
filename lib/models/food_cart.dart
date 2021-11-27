@@ -1,5 +1,7 @@
 // import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:foodbyte/services/database.dart';
 // import 'package:provider/provider.dart';
 import 'food_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class FoodCart extends ChangeNotifier {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   var cart = <FoodItem, int>{
     // FoodItem(11, 'Veggie Paradise', 'pizza3.png',
     //     'Veg pizza with corn, olives & red paprika', 200): 2,
@@ -29,17 +32,23 @@ class FoodCart extends ChangeNotifier {
   double taxes = 0;
   double discount = 0;
   double total = 0;
+  var ids=[];
+  int counter = -1;
 
-  void addItem(FoodItem item, int quantity) {
+  Future<void> addItem(FoodItem item, int quantity) async {
     cart[item] = quantity;
     itemtotal += item.price;
     taxes = itemtotal * 0.18;
     total = itemtotal + deliveryCharge + taxes - discount;
     print(cart);
     notifyListeners();
+    final User? user = _auth.currentUser;
+    counter++;
+    ids.insert(counter, item.id);
+    await DatabaseService(uid: user!.uid).updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
   }
 
-  void removeItem(FoodItem item, int quantity) {
+  Future<void> removeItem(FoodItem item, int quantity) async {
     if (quantity == 0) {
       cart.remove(item);
       itemtotal -= item.price;
@@ -51,5 +60,11 @@ class FoodCart extends ChangeNotifier {
       print(cart);
     }
     notifyListeners();
+    final User? user = _auth.currentUser;
+    if(counter>=0){
+      counter--;
+    }
+    ids.remove(item.id);
+    await DatabaseService(uid: user!.uid).updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
   }
 }
