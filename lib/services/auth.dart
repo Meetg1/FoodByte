@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:foodbyte/services/database.dart';
 
 class AuthService {
 
@@ -21,6 +22,8 @@ class AuthService {
   //   }
   // }
 
+
+
 // sign in with email and password
   Future signInWithEmailAndPassword(String email, String password) async{
     try{
@@ -35,10 +38,12 @@ class AuthService {
 
 // register with email and password
 
-  Future registerWithEmailAndPassword(String email, String password) async{
+  Future registerWithEmailAndPassword(String email, String password, String name, String phone) async{
     try{
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? users = result.user;
+      await DatabaseService(uid: users!.uid).updateUserProfile(name,phone);
+      await DatabaseService(uid: users!.uid).updatefoodCart(null, 0.0, 0.0, 0.0, 0.0, 0.0);
       return users;
     }catch(e){
       print(e.toString());
