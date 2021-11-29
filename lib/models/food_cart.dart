@@ -47,6 +47,7 @@ class FoodCart extends ChangeNotifier {
     print(result);
     print('hello');
   }
+
   Future<void> addItem(FoodItem item, int quantity) async {
     cart[item] = quantity;
     itemtotal += item.price;

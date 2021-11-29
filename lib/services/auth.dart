@@ -43,7 +43,7 @@ class AuthService {
     try{
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? users = result.user;
-      await DatabaseService(uid: users!.uid).updateUserProfile(name,phone);
+      await DatabaseService(uid: users!.uid).updateUserProfile(name,phone,email);
       await DatabaseService(uid: users!.uid).updatefoodCart(null, 0.0, 0.0, 0.0, 0.0, 0.0);
       return users;
     }catch(e){
