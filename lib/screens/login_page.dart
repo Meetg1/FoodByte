@@ -4,6 +4,7 @@ import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/signup_page.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
+import 'package:foodbyte/screens/google_login.dart';
 
 class LoginPage extends StatefulWidget {
   // const LoginPage({Key? key}) : super(key: key);
@@ -23,6 +24,12 @@ class _LoginPageState extends State<LoginPage> {
   String password = '';
   String error = '';
   bool loading = false;
+  bool _passwordVisible = false;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                                 height: 15,
                               ),
                               TextFormField(
+                                obscureText: !_passwordVisible,
                                 showCursor: true,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
@@ -124,10 +132,19 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Color(0xFF666666),
                                     size: defaultIconSize,
                                   ),
-                                  suffixIcon: Icon(
-                                    Icons.remove_red_eye,
-                                    color: Color(0xFF666666),
-                                    size: defaultIconSize,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Color(0xFF666666),
+                                      size: defaultIconSize,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _passwordVisible = !_passwordVisible;
+                                      });
+                                    },
                                   ),
                                   fillColor: Color(0xFFF2F3F5),
                                   hintStyle: TextStyle(
@@ -137,7 +154,6 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   hintText: "Password",
                                 ),
-                                obscureText: true,
                                 validator: (val) {
                                   if (val!.isEmpty) return 'Empty';
                                   return null;
@@ -336,38 +352,4 @@ class _LoginPageState extends State<LoginPage> {
 //   }
 // }
 
-class GoogleLogin extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 40.0),
-      width: double.infinity,
-      decoration: new BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(15.0)),
-      ),
-      child: MaterialButton(
-          padding: EdgeInsets.only(top: 3.0, bottom: 3.0, left: 3.0),
-          color: Colors.white,
-          onPressed: () {},
-          child: new Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              new Image.asset(
-                'assets/images/google_logo.png',
-                height: 48.0,
-              ),
-              new Container(
-                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: new Text(
-                    "Sign in with Google",
-                    style: TextStyle(
-                      fontFamily: 'defaultFontFamily',
-                      color: Color(0xFF666666),
-                      fontSize: 20.0,
-                    ),
-                  )),
-            ],
-          )),
-    );
-  }
-}
+
