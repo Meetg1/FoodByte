@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
 import 'package:foodbyte/models/order.dart';
 import 'package:foodbyte/models/order_brain.dart';
-import 'package:foodbyte/screens/menu_page.dart';
-import 'package:foodbyte/screens/profile_page.dart';
+import 'package:foodbyte/screens/home.dart';
 import 'package:provider/provider.dart';
 
 class AddressPage extends StatefulWidget {
@@ -248,23 +247,27 @@ class _AddressPageState extends State<AddressPage> {
                           // print(city);
                           // print(cart);
                           // print(foodcart.itemtotal);
-                          // Order o = Order(
-                          //     cart,
-                          //     foodcart.itemtotal,
-                          //     foodcart.deliveryCharge,
-                          //     foodcart.taxes,
-                          //     foodcart.discount,
-                          //     foodcart.total,
-                          //     fullname,
-                          //     phone,
-                          //     houseno,
-                          //     streetname,
-                          //     city);
+                          Order o = Order(
+                              cart,
+                              foodcart.itemtotal,
+                              foodcart.deliveryCharge,
+                              foodcart.taxes,
+                              foodcart.discount,
+                              foodcart.total,
+                              fullname,
+                              phone,
+                              houseno,
+                              streetname,
+                              city);
 
-                          // OrderBrain ob = OrderBrain();
-                          // ob.addOrder(o);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MenuPage()));
+                          Provider.of<OrderBrain>(context, listen: false)
+                              .addOrder(o);
+                          Provider.of<FoodCart>(context, listen: false)
+                              .emptyCart();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
                         }
                       },
                       child:

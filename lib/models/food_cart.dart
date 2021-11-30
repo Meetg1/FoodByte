@@ -9,8 +9,6 @@ import 'package:provider/provider.dart';
 import 'food_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-
 class FoodCart extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   var cart = <FoodItem, int>{
@@ -35,12 +33,15 @@ class FoodCart extends ChangeNotifier {
   double taxes = 0;
   double discount = 0;
   double total = 0;
-  var ids=[];
+  var ids = [];
   int counter = -1;
 
-  void getData()async {
+  void getData() async {
     final User? user = _auth.currentUser;
-    var document = await FirebaseFirestore.instance.collection('foodcart').doc(user!.uid).get();
+    var document = await FirebaseFirestore.instance
+        .collection('foodcart')
+        .doc(user!.uid)
+        .get();
     var fooditems = document.data();
     final Map<String, dynamic> doc = fooditems as Map<String, dynamic>;
     List result = doc['cart'];
@@ -58,10 +59,12 @@ class FoodCart extends ChangeNotifier {
     final User? user = _auth.currentUser;
     counter++;
     ids.insert(counter, item.id);
-    await DatabaseService(uid: user!.uid).updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
+    await DatabaseService(uid: user!.uid)
+        .updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
   }
 
   Future<void> removeItem(FoodItem item, int quantity) async {
+    print("omm3");
     if (quantity == 0) {
       cart.remove(item);
       itemtotal -= item.price;
@@ -74,10 +77,20 @@ class FoodCart extends ChangeNotifier {
     }
     notifyListeners();
     final User? user = _auth.currentUser;
-    if(counter>=0){
+    if (counter >= 0) {
       counter--;
     }
     ids.remove(item.id);
-    await DatabaseService(uid: user!.uid).updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
+    await DatabaseService(uid: user!.uid)
+        .updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
+  }
+
+  Future<void> emptyCart() async {
+    cart = <FoodItem, int>{};
+    itemtotal = 0;
+    taxes = 0;
+    discount = 0;
+    total = 0;
+    notifyListeners();
   }
 }
