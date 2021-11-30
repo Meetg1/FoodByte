@@ -1,16 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:foodbyte/models/food_cart.dart';
 // import 'package:foodbyte/models/order.dart';
 import 'package:foodbyte/models/order_brain.dart';
 import 'package:foodbyte/screens/order_page.dart';
 
 OrderBrain o = OrderBrain();
 var orders = o.myOrders;
-
 class ProfilePage extends StatelessWidget {
   // const profilePage({ Key? key }) : super(key: key);
-
+  var name = '';
+  var phone = '';
+  var email = '';
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  void getProfile()async {
+    final User? user = _auth.currentUser;
+    var document = await FirebaseFirestore.instance.collection('profile').doc(user!.uid).get();
+    var fooditems = document.data();
+    final Map<String, dynamic> doc = fooditems as Map<String, dynamic>;
+    name = doc['name'];
+    phone = doc['phone'];
+    email = doc['email'].toString();
+  }
   @override
   Widget build(BuildContext context) {
+    getProfile();
     return Container(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -37,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(width: 30),
                 Text(
-                  "Rohit Sharma",
+                  name,
                   style: TextStyle(
                     fontFamily: 'Georgia',
                     fontSize: 17.5,
@@ -64,7 +79,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(width: 30),
                 Text(
-                  "99999 88888",
+                  phone,
                   style: TextStyle(
                     fontFamily: 'Georgia',
                     fontSize: 17.5,
@@ -91,7 +106,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 SizedBox(width: 30),
                 Text(
-                  "Rohitsharma@gmail.com",
+                  email,
                   style: TextStyle(
                     fontFamily: 'Georgia',
                     fontSize: 17.5,

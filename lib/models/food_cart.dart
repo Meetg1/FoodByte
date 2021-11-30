@@ -1,7 +1,10 @@
 // import 'package:flutter/material.dart';
+// import 'dart:js';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:foodbyte/services/database.dart';
+import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 import 'food_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -34,6 +37,16 @@ class FoodCart extends ChangeNotifier {
   double total = 0;
   var ids=[];
   int counter = -1;
+
+  void getData()async {
+    final User? user = _auth.currentUser;
+    var document = await FirebaseFirestore.instance.collection('foodcart').doc(user!.uid).get();
+    var fooditems = document.data();
+    final Map<String, dynamic> doc = fooditems as Map<String, dynamic>;
+    List result = doc['cart'];
+    print(result);
+    print('hello');
+  }
 
   Future<void> addItem(FoodItem item, int quantity) async {
     cart[item] = quantity;

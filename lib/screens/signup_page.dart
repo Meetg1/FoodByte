@@ -4,6 +4,7 @@ import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/login_page.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
+import 'package:foodbyte/screens/google_login.dart';
 
 class SignUpPage extends StatefulWidget {
   // const SignUpPage({Key? key}) : super(key: key);
@@ -29,6 +30,12 @@ class _SignUpPageState extends State<SignUpPage> {
   String confirmPassword = '';
   String error = '';
   bool loading = false;
+  bool _passwordVisible = false;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Column(
                     children: <Widget>[
                       Flexible(
-                        flex: 9,
+                        flex: 11,
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -184,6 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               TextFormField(
                                 showCursor: true,
+                                obscureText: !_passwordVisible,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius:
@@ -199,10 +207,19 @@ class _SignUpPageState extends State<SignUpPage> {
                                     color: Color(0xFF666666),
                                     size: defaultIconSize,
                                   ),
-                                  suffixIcon: Icon(
-                                    Icons.remove_red_eye,
-                                    color: Color(0xFF666666),
-                                    size: defaultIconSize,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Color(0xFF666666),
+                                      size: defaultIconSize,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _passwordVisible = !_passwordVisible;
+                                      });
+                                    },
                                   ),
                                   fillColor: Color(0xFFF2F3F5),
                                   hintStyle: TextStyle(
@@ -212,7 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                   hintText: "Password",
                                 ),
-                                obscureText: true,
+
                                 controller: _pass,
                                 validator: (val) {
                                   if (val!.isEmpty) return 'Empty';
@@ -229,6 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               TextFormField(
                                 showCursor: true,
+                                obscureText: !_passwordVisible,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius:
@@ -244,10 +262,19 @@ class _SignUpPageState extends State<SignUpPage> {
                                     color: Color(0xFF666666),
                                     size: defaultIconSize,
                                   ),
-                                  suffixIcon: Icon(
-                                    Icons.remove_red_eye,
-                                    color: Color(0xFF666666),
-                                    size: defaultIconSize,
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: Color(0xFF666666),
+                                      size: defaultIconSize,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        _passwordVisible = !_passwordVisible;
+                                      });
+                                    },
                                   ),
                                   fillColor: Color(0xFFF2F3F5),
                                   hintStyle: TextStyle(
