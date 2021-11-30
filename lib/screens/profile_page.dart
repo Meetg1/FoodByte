@@ -168,7 +168,7 @@ class ProfilePage extends StatelessWidget {
                                         'assets/images/logo_login.jpg'),
                                   ),
                                   Text(
-                                    "Order ID ${orders[index].orderid}",
+                                    "Order ID ",
                                     style: TextStyle(
                                       fontFamily: 'Georgia',
                                       fontSize: 18,

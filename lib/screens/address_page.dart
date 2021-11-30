@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
 import 'package:foodbyte/models/order.dart';
 import 'package:foodbyte/models/order_brain.dart';
 import 'package:foodbyte/screens/menu_page.dart';
 import 'package:foodbyte/screens/profile_page.dart';
+import 'package:foodbyte/screens/wrapper.dart';
+import 'package:foodbyte/services/database.dart';
 import 'package:provider/provider.dart';
 
 class AddressPage extends StatefulWidget {
@@ -15,11 +18,17 @@ class AddressPage extends StatefulWidget {
 
 class _AddressPageState extends State<AddressPage> {
   final _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   String fullname = '';
   String phone = '';
   String houseno = '';
   String streetname = '';
   String city = '';
+
+  Future cart_reload() async{
+    final User? user = _auth.currentUser;
+    await DatabaseService(uid: user!.uid).updatefoodCart(null, 0.0, 0.0, 0.0, 0.0, 0.0);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -260,11 +269,11 @@ class _AddressPageState extends State<AddressPage> {
                           //     houseno,
                           //     streetname,
                           //     city);
-
                           // OrderBrain ob = OrderBrain();
                           // ob.addOrder(o);
+                          cart_reload();
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => MenuPage()));
+                              builder: (context) => Wrapper()));
                         }
                       },
                       child:
