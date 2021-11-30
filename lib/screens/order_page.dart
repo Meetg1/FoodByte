@@ -44,7 +44,8 @@ class OrderPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Order ID ${order.orderid}",
+                  // "Order ID ${order.orderid}",
+                  "Order ID ${2}",
                   style: TextStyle(
                     fontFamily: 'Georgia',
                     fontSize: 24,

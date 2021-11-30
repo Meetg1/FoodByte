@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String email = '';
   String phone = '';
   String password = '';
-  String confirm_password = '';
+  String confirmPassword = '';
   String error = '';
   bool loading = false;
 
@@ -171,7 +171,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   hintText: "Phone Number",
                                 ),
                                 validator: (val) => val!.length != 10
-                                    ? 'Enter a 10 chars long'
+                                    ? 'Mobile No. is invalid'
                                     : null,
                                 onChanged: (val) {
                                   setState(() {
@@ -265,7 +265,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 onChanged: (val) {
                                   setState(() {
-                                    confirm_password = val;
+                                    confirmPassword = val;
                                   });
                                 },
                               ),
