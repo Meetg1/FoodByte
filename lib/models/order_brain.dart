@@ -1,14 +1,20 @@
+import 'package:flutter/foundation.dart';
 import 'package:foodbyte/models/food_item.dart';
 import 'package:foodbyte/models/order.dart';
 
-class OrderBrain {
+class OrderBrain extends ChangeNotifier {
   List<Order> myOrders = [];
+
   void addOrder(Order order) {
-    this.myOrders.add(order);
-    print(this.myOrders);
+    myOrders.add(order);
+    // print("1");
+    // print(myOrders);
+    notifyListeners();
   }
 
-  List<Order> getOrders() {
-    return this.myOrders;
-  }
+  // List<Order> getOrders() {
+  //   print("2");
+  //   print(this.myOrders);
+  //   return this.myOrders;
+  // }
 }

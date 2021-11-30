@@ -2,32 +2,45 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
-// import 'package:foodbyte/models/order.dart';
+import 'package:foodbyte/models/order.dart';
 import 'package:foodbyte/models/order_brain.dart';
 import 'package:foodbyte/screens/order_page.dart';
+import 'package:provider/provider.dart';
 
-OrderBrain o = OrderBrain();
-var orders = o.myOrders;
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   // const profilePage({ Key? key }) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
   var name = '';
   var phone = '';
   var email = '';
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  void getProfile()async {
+  void getProfile() async {
     final User? user = _auth.currentUser;
-    var document = await FirebaseFirestore.instance.collection('profile').doc(user!.uid).get();
+    var document = await FirebaseFirestore.instance
+        .collection('profile')
+        .doc(user!.uid)
+        .get();
     var fooditems = document.data();
     final Map<String, dynamic> doc = fooditems as Map<String, dynamic>;
     name = doc['name'];
     phone = doc['phone'];
     email = doc['email'].toString();
   }
+
   @override
   Widget build(BuildContext context) {
+    print("OMMM");
     getProfile();
     return Container(
-      child: Padding(
+        child: Consumer<OrderBrain>(builder: (context, orderbrain, child) {
+      var orders = orderbrain.myOrders;
+      print(orders);
+      return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,7 +155,8 @@ class ProfilePage extends StatelessWidget {
                     // FoodItem fooditem = mostPopular[index];
                     return GestureDetector(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => OrderPage(orders[index]))),
+                          builder: (context) =>
+                              OrderPage(orders[index], index + 1))),
                       // OrderPage(orders[index])
                       child: Container(
                         margin: EdgeInsets.only(right: 20),
@@ -168,7 +182,9 @@ class ProfilePage extends StatelessWidget {
                                         'assets/images/logo_login.jpg'),
                                   ),
                                   Text(
-                                    "Order ID ",
+                                    "Order ID ${orders[index].orderid}",
+                                    "Order ID ${index + 1}",
+
                                     style: TextStyle(
                                       fontFamily: 'Georgia',
                                       fontSize: 18,
@@ -239,7 +255,7 @@ class ProfilePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
+      );
+    }));
   }
 }

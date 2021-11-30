@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -92,13 +90,40 @@ class _CartPageState extends State<CartPage> {
             SizedBox(
               height: 15,
             ),
-            Text(
-              "Your Food Cart",
-              style: TextStyle(
-                fontFamily: 'Georgia',
-                fontSize: 24,
-                color: Colors.black,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Your Food Cart",
+                  style: TextStyle(
+                    fontFamily: 'Georgia',
+                    fontSize: 24,
+                    color: Colors.black,
+                  ),
+                ),
+                Container(
+                  width: 95,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      border: Border.all(
+                        color: Color(0xffEE7700),
+                        width: 0.8,
+                      )),
+                  // color: Colors.black,
+                  child: TextButton(
+                    onPressed: () {
+                      foodcart.emptyCart();
+                    },
+                    child: Text(
+                      'Clear Cart',
+                      style: TextStyle(fontSize: 15.0, color: Colors.black
+                          // fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                )
+              ],
             ),
             SizedBox(
               height: 18,

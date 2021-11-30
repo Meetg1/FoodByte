@@ -4,7 +4,8 @@ import 'package:foodbyte/models/order.dart';
 
 class OrderPage extends StatelessWidget {
   final Order order;
-  OrderPage(this.order);
+  final int orderIndex;
+  OrderPage(this.order, this.orderIndex);
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +45,7 @@ class OrderPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  // "Order ID ${order.orderid}",
-                  "Order ID ${2}",
+                  "Order ID $orderIndex",
                   style: TextStyle(
                     fontFamily: 'Georgia',
                     fontSize: 24,

@@ -7,6 +7,10 @@ import 'package:foodbyte/screens/menu_page.dart';
 import 'package:foodbyte/screens/profile_page.dart';
 import 'package:foodbyte/screens/wrapper.dart';
 import 'package:foodbyte/services/database.dart';
+import 'package:foodbyte/screens/menu_page.dart';
+import 'package:foodbyte/screens/profile_page.dart';
+
+import 'package:foodbyte/screens/home.dart';
 import 'package:provider/provider.dart';
 
 class AddressPage extends StatefulWidget {
@@ -274,6 +278,44 @@ class _AddressPageState extends State<AddressPage> {
                           cart_reload();
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Wrapper()));
+                          // Order o = Order(
+                          //     cart,
+                          //     foodcart.itemtotal,
+                          //     foodcart.deliveryCharge,
+                          //     foodcart.taxes,
+                          //     foodcart.discount,
+                          //     foodcart.total,
+                          //     fullname,
+                          //     phone,
+                          //     houseno,
+                          //     streetname,
+                          //     city);
+
+                          // OrderBrain ob = OrderBrain();
+                          // ob.addOrder(o);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MenuPage()));
+                          Order o = Order(
+                              cart,
+                              foodcart.itemtotal,
+                              foodcart.deliveryCharge,
+                              foodcart.taxes,
+                              foodcart.discount,
+                              foodcart.total,
+                              fullname,
+                              phone,
+                              houseno,
+                              streetname,
+                              city);
+
+                          Provider.of<OrderBrain>(context, listen: false)
+                              .addOrder(o);
+                          Provider.of<FoodCart>(context, listen: false)
+                              .emptyCart();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Wrapper()));
                         }
                       },
                       child:
