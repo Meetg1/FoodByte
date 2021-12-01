@@ -3,11 +3,14 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:foodbyte/models/food_brain.dart';
 import 'package:foodbyte/services/database.dart';
 import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 import 'food_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+FoodBrain f = new FoodBrain();
 
 class FoodCart extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -36,7 +39,7 @@ class FoodCart extends ChangeNotifier {
   var ids = [];
   int counter = -1;
 
-  void getData() async {
+  Future<List> getData() async {
     final User? user = _auth.currentUser;
     var document = await FirebaseFirestore.instance
         .collection('foodcart')
@@ -45,8 +48,22 @@ class FoodCart extends ChangeNotifier {
     var fooditems = document.data();
     final Map<String, dynamic> doc = fooditems as Map<String, dynamic>;
     List result = doc['cart'];
-    print(result);
-    print('hello');
+    return result;
+  }
+
+  Future<void> buildCart() async {
+    var data = await getData();
+    // print("object");
+    // print(data);
+
+    for (var i = 0; i < data.length; i++) {
+      var item = f.getFoodItemById(data[i]);
+      cart[item] = cart.containsKey(item) ? cart[item]! + 1 : 1;
+      itemtotal += item.price;
+      taxes = itemtotal * 0.18;
+      total = itemtotal + deliveryCharge + taxes - discount;
+    }
+    notifyListeners();
   }
 
   Future<void> addItem(FoodItem item, int quantity) async {
@@ -64,17 +81,14 @@ class FoodCart extends ChangeNotifier {
   }
 
   Future<void> removeItem(FoodItem item, int quantity) async {
-    print("omm3");
     if (quantity == 0) {
       cart.remove(item);
-      itemtotal -= item.price;
     } else {
       cart[item] = quantity;
-      itemtotal -= item.price;
-      taxes = itemtotal * 0.18;
-      total = itemtotal + deliveryCharge + taxes - discount;
-      print(cart);
     }
+    itemtotal -= item.price;
+    taxes = itemtotal * 0.18;
+    total = itemtotal + deliveryCharge + taxes - discount;
     notifyListeners();
     final User? user = _auth.currentUser;
     if (counter >= 0) {

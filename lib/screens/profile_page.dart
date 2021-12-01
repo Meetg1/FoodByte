@@ -18,6 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   var name = '';
   var phone = '';
   var email = '';
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   void getProfile() async {
     final User? user = _auth.currentUser;
@@ -30,12 +31,16 @@ class _ProfilePageState extends State<ProfilePage> {
     name = doc['name'];
     phone = doc['phone'];
     email = doc['email'].toString();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getProfile();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("OMMM");
-    getProfile();
     return Container(
         child: Consumer<OrderBrain>(builder: (context, orderbrain, child) {
       var orders = orderbrain.myOrders;
