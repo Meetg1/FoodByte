@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbyte/models/food_cart.dart';
-import 'package:foodbyte/models/order.dart';
 import 'package:foodbyte/models/order_brain.dart';
 import 'package:foodbyte/screens/order_page.dart';
 import 'package:provider/provider.dart';

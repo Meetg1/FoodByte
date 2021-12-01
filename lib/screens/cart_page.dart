@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_item.dart';
 import 'package:foodbyte/screens/address_page.dart';

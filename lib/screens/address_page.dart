@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
 import 'package:foodbyte/models/order.dart';
@@ -14,6 +15,7 @@ class AddressPage extends StatefulWidget {
 
 class _AddressPageState extends State<AddressPage> {
   final _formKey = GlobalKey<FormState>();
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   String fullname = '';
   String phone = '';
   String houseno = '';

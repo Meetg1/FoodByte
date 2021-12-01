@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:foodbyte/models/food_brain.dart';
 import 'package:foodbyte/services/database.dart';
-import 'package:provider/provider.dart';
-// import 'package:provider/provider.dart';
 import 'food_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -81,6 +79,7 @@ class FoodCart extends ChangeNotifier {
   }
 
   Future<void> removeItem(FoodItem item, int quantity) async {
+    print("omm3");
     if (quantity == 0) {
       cart.remove(item);
     } else {
@@ -105,6 +104,13 @@ class FoodCart extends ChangeNotifier {
     taxes = 0;
     discount = 0;
     total = 0;
+    await emptyCartDB();
     notifyListeners();
+  }
+
+  Future<void> emptyCartDB() async {
+    final User? user = _auth.currentUser;
+    await DatabaseService(uid: user!.uid)
+        .updatefoodCart(null, 0.0, 0.0, 0.0, 0.0, 0.0);
   }
 }
