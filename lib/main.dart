@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
-import 'package:foodbyte/screens/home.dart';
+import 'package:foodbyte/models/order_brain.dart';
 import 'package:foodbyte/screens/wrapper.dart';
 import 'package:foodbyte/services/auth.dart';
-import 'package:provider/provider.dart';
-// import 'package:foodbyte/screens/signup_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -14,12 +12,18 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => FoodCart(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<FoodCart>(
+            create: (BuildContext context) => FoodCart()),
+        ChangeNotifierProvider<OrderBrain>(
+            create: (BuildContext context) => OrderBrain()),
+      ],
       child: StreamProvider<User?>.value(
         value: AuthService().user,
         initialData: null,

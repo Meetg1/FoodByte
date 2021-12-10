@@ -1,3 +1,5 @@
+import 'package:collection/src/iterable_extensions.dart';
+
 import 'food_item.dart';
 
 class FoodBrain {
@@ -109,6 +111,28 @@ class FoodBrain {
     } else {
       souths.sort((b, a) => a.todayOrders.compareTo(b.todayOrders));
       return souths;
+    }
+  }
+
+  dynamic getFoodItemById(int idd) {
+    int i = pizzas.indexWhere((o) => o.id == idd);
+    if (i != -1) {
+      return pizzas[i];
+    }
+
+    i = chinese.indexWhere((o) => o.id == idd);
+    if (i != -1) {
+      return chinese[i];
+    }
+
+    i = burgers.indexWhere((o) => o.id == idd);
+    if (i != -1) {
+      return burgers[i];
+    }
+
+    i = souths.indexWhere((o) => o.id == idd);
+    if (i != -1) {
+      return souths[i];
     }
   }
 }

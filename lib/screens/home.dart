@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset : false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           backgroundColor: const Color(0xFFFFFFFF),
           leading: Image(
@@ -40,13 +40,13 @@ class _HomePageState extends State<HomePage> {
                   Icons.logout,
                   color: const Color(0xff000000),
                 ),
-                onPressed: ()async{
+                onPressed: () async {
                   await _auth.signOut();
                 })
           ]),
       body: SingleChildScrollView(
           child: Container(child: _pages.elementAt(_selectedIndex))),
-          bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           selectedLabelStyle: TextStyle(
             fontFamily: 'Segoe UI',
