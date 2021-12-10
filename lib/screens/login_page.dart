@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
+import 'package:foodbyte/screens/reset_password.dart';
 import 'package:foodbyte/screens/signup_page.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
@@ -169,15 +170,20 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Container(
                                 width: double.infinity,
-                                child: Text(
-                                  "Forgot your password?",
-                                  style: TextStyle(
-                                    color: Color(0xFF666666),
-                                    fontFamily: defaultFontFamily,
-                                    fontSize: defaultFontSize,
-                                    fontStyle: FontStyle.normal,
+                                child: TextButton(
+                                  child: Text(
+                                    "Forgot your password?",
+                                    style: TextStyle(
+                                      color: Color(0xFF666666),
+                                      fontFamily: defaultFontFamily,
+                                      fontSize: defaultFontSize,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                    textAlign: TextAlign.end,
                                   ),
-                                  textAlign: TextAlign.end,
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen()));
+                                  },
                                 ),
                               ),
                               SizedBox(

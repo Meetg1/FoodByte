@@ -2,6 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/login_page.dart';
+import 'package:foodbyte/screens/reset_password.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
 import 'package:foodbyte/screens/google_login.dart';
@@ -59,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Column(
                     children: <Widget>[
                       Flexible(
-                        flex: 11,
+                        flex: 15,
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -297,23 +298,28 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                               ),
                               SizedBox(
-                                height: 15,
+                                height: 5,
                               ),
                               Container(
                                 width: double.infinity,
-                                child: Text(
-                                  "Forgot your password?",
-                                  style: TextStyle(
-                                    color: Color(0xFF666666),
-                                    fontFamily: defaultFontFamily,
-                                    fontSize: defaultFontSize,
-                                    fontStyle: FontStyle.normal,
+                                child: TextButton(
+                                  child: Text(
+                                    "Forgot your password?",
+                                    style: TextStyle(
+                                      color: Color(0xFF666666),
+                                      fontFamily: defaultFontFamily,
+                                      fontSize: defaultFontSize,
+                                      fontStyle: FontStyle.normal,
+                                    ),
+                                    textAlign: TextAlign.end,
                                   ),
-                                  textAlign: TextAlign.end,
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen()));
+                                  },
                                 ),
                               ),
                               SizedBox(
-                                height: 15,
+                                height: 5,
                               ),
                               Container(
                                 //margin: EdgeInsets.symmetric(horizontal: 40.0),

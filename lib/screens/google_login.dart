@@ -1,9 +1,11 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/signup_page.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 class GoogleLogin extends StatefulWidget {
@@ -25,7 +27,7 @@ class _GoogleLoginState extends State<GoogleLogin>{
       child: MaterialButton(
           padding: EdgeInsets.only(top: 3.0, bottom: 3.0, left: 3.0),
           color: Colors.white,
-          onPressed: () { },
+          onPressed: () {},
           child: new Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
