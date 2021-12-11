@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/models/food_cart.dart';
 import 'package:foodbyte/models/order.dart';
@@ -241,14 +240,6 @@ class _AddressPageState extends State<AddressPage> {
                         child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // print("form submitted!");
-                          // print(fullname);
-                          // print(phone);
-                          // print(houseno);
-                          // print(streetname);
-                          // print(city);
-                          // print(cart);
-                          // print(foodcart.itemtotal);
                           Order o = Order(
                               cart,
                               foodcart.itemtotal,

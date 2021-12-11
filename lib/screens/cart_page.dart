@@ -12,24 +12,6 @@ class CartPage extends StatefulWidget {
   _CartPageState createState() => _CartPageState();
 }
 
-// class AddToCartMenu extends StatelessWidget {
-//   int productCounter;
-
-//   AddToCartMenu(this.productCounter);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return;
-//   }
-// }
-
-// class TotalCalculationWidget extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ;
-//   }
-// }
-
 class PromoCodeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -590,33 +572,5 @@ class _CartPageState extends State<CartPage> {
           );
         }),
       );
-  }
-}
-
-class SnackBarPage extends StatelessWidget {
-  const SnackBarPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () {
-          final snackBar = SnackBar(
-            content: const Text('Yay! A SnackBar!'),
-            action: SnackBarAction(
-              label: 'Undo',
-              onPressed: () {
-                // Some code to undo the change.
-              },
-            ),
-          );
-
-          // Find the ScaffoldMessenger in the widget tree
-          // and use it to show a SnackBar.
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        },
-        child: const Text('Show SnackBar'),
-      ),
-    );
   }
 }

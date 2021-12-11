@@ -1,5 +1,3 @@
-import 'package:collection/src/iterable_extensions.dart';
-
 import 'food_item.dart';
 
 class FoodBrain {
@@ -77,10 +75,6 @@ class FoodBrain {
     FoodItem(16, 'Masala Dosa', 'south4.jfif',
         'Popular variation of the South Indian Dosa', 80),
   ];
-
-// List todaysSpecial = [1, 2, 5];
-
-// List mostPopular = [2, 3, 4];
 
   List<FoodItem> getMostPopular(String foodname) {
     if (foodname == 'Pizzas') {

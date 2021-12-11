@@ -1,8 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbyte/screens/home.dart';
 import 'package:foodbyte/screens/reset_password.dart';
-import 'package:foodbyte/screens/signup_page.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
 import 'package:foodbyte/screens/google_login.dart';
@@ -103,9 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                                       fontSize: defaultFontSize),
                                   hintText: "Email Id",
                                 ),
-                                validator: (val) => EmailValidator.validate(val!)
-                                    ? null
-                                    : "Please enter a valid email",
+                                validator: (val) =>
+                                    EmailValidator.validate(val!)
+                                        ? null
+                                        : "Please enter a valid email",
                                 onChanged: (val) {
                                   setState(() {
                                     email = val;
@@ -182,7 +181,10 @@ class _LoginPageState extends State<LoginPage> {
                                     textAlign: TextAlign.end,
                                   ),
                                   onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen()));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ResetScreen()));
                                   },
                                 ),
                               ),
@@ -239,8 +241,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Text(
                                 error,
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 14.0),
+                                style: TextStyle(
+                                    color: Colors.red, fontSize: 14.0),
                               ),
                               SizedBox(
                                 height: 10,
@@ -310,52 +312,3 @@ class _LoginPageState extends State<LoginPage> {
           );
   }
 }
-
-// class SignInButtonWidget extends StatelessWidget {
-//   final AuthService _auth = AuthService();
-//
-//   Object? get email => email;
-//
-//   Object? get password => password;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       //margin: EdgeInsets.symmetric(horizontal: 40.0),
-//       height: 50.0,
-//       width: double.infinity,
-//       decoration: new BoxDecoration(
-//         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-//         boxShadow: <BoxShadow>[
-//           BoxShadow(
-//             color: Colors.redAccent,
-//           ),
-//           BoxShadow(
-//             color: Colors.redAccent,
-//           ),
-//         ],
-//       ),
-//       child: MaterialButton(
-//           highlightColor: Colors.transparent,
-//           splashColor: Colors.redAccent,
-//           //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
-//           child: Padding(
-//             padding:
-//                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
-//             child: Text(
-//               "SIGN IN",
-//               style: TextStyle(
-//                   color: Colors.white,
-//                   fontSize: 25.0,
-//                   fontFamily: "WorkSansBold"),
-//             ),
-//           ),
-//           onPressed: () async {
-//             print(email);
-//             print(password);
-//           }),
-//     );
-//   }
-// }
-
-

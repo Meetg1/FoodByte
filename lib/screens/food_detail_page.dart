@@ -4,14 +4,8 @@ import 'package:foodbyte/models/food_item.dart';
 import 'package:provider/provider.dart';
 
 class FoodDetailPage extends StatelessWidget {
-  // int _selectedIndex = 0;
   final FoodItem item;
 
-  // final String title;
-  // final String price;
-  // final String description;
-
-  // FoodDetailPage(this.image, this.title, this.price, this.description);
   FoodDetailPage(this.item);
 
   @override

@@ -1,5 +1,4 @@
 class Order {
-  // final String userid;
   final bool isDelivered = true;
   var deliveryDate = DateTime.now().toString();
   var foodItems; // will be a Map() <FoodItem, int quantity>.
@@ -13,7 +12,6 @@ class Order {
   String houseno;
   String streetname;
   String city;
-  // var address; // will be a Map() of city, pincode,etc.
 
   Order(
       this.foodItems,

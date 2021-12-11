@@ -168,13 +168,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       scrollDirection: Axis.horizontal,
                       itemCount: orders.length,
                       itemBuilder: (BuildContext context, int index) {
-                        // FoodItem fooditem = mostPopular[index];
                         return GestureDetector(
                           onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
                                   builder: (context) =>
                                       OrderPage(orders[index], index + 1))),
-                          // OrderPage(orders[index])
                           child: Container(
                             margin: EdgeInsets.only(right: 20),
                             width: 300,
@@ -258,7 +256,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   SizedBox(height: 4),
                                   Text(
                                     orders[index].deliveryDate.substring(0, 16),
-                                    // '26 Jul 2021 at 6:30 pm',
                                     style: TextStyle(
                                       fontFamily: 'Segoe UI',
                                       fontSize: 14,
