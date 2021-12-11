@@ -1,8 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbyte/screens/home.dart';
-import 'package:foodbyte/screens/login_page.dart';
-import 'package:foodbyte/screens/reset_password.dart';
 import 'package:foodbyte/services/auth.dart';
 import 'package:foodbyte/shared/loading.dart';
 import 'package:foodbyte/screens/google_login.dart';
@@ -108,6 +106,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                       fontSize: defaultFontSize),
                                   hintText: "Full Name",
                                 ),
+                                validator: (val) => val!.length == 0
+                                    ? 'Name cannot be empty'
+                                    : null,
                                 onChanged: (val) {
                                   setState(() {
                                     name = val;
@@ -230,10 +231,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                   ),
                                   hintText: "Password",
                                 ),
-
                                 controller: _pass,
                                 validator: (val) {
                                   if (val!.isEmpty) return 'Empty';
+                                  if (val.length < 6)
+                                    return 'Password should be atleast 6 characters';
                                   return null;
                                 },
                                 onChanged: (val) {
@@ -288,6 +290,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 controller: _confirmPass,
                                 validator: (val) {
                                   if (val!.isEmpty) return 'Empty';
+
                                   if (val != _pass.text) return 'Not Match';
                                   return null;
                                 },
@@ -300,24 +303,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Container(
-                                width: double.infinity,
-                                child: TextButton(
-                                  child: Text(
-                                    "Forgot your password?",
-                                    style: TextStyle(
-                                      color: Color(0xFF666666),
-                                      fontFamily: defaultFontFamily,
-                                      fontSize: defaultFontSize,
-                                      fontStyle: FontStyle.normal,
-                                    ),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen()));
-                                  },
-                                ),
-                              ),
+
                               SizedBox(
                                 height: 5,
                               ),
