@@ -12,22 +12,7 @@ FoodBrain f = new FoodBrain();
 
 class FoodCart extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  var cart = <FoodItem, int>{
-    // FoodItem(11, 'Veggie Paradise', 'pizza3.png',
-    //     'Veg pizza with corn, olives & red paprika', 200): 2,
-    // FoodItem(
-    //     3,
-    //     'Veg Manchurian',
-    //     'chinese3.jpg',
-    //     'Indo-chinese dish made by roughly chopping and deep-frying cauliflower',
-    //     80,
-    //     allTimeOrders: 5,
-    //     todayOrders: 5): 3,
-    // FoodItem(4, 'Veg Noodle Soup', 'chinese4.jpg',
-    //     'Delicious vegan soup with chinese noodles', 90): 4,
-    // FoodItem(7, 'Paneer King', 'burger3.jfif',
-    //     'Fresh crumbled Paneer and red, yellow and green peppers', 130): 6
-  }; //dart map
+  var cart = <FoodItem, int>{}; //dart map
 
   double itemtotal = 0;
   double deliveryCharge = 30;
@@ -51,8 +36,6 @@ class FoodCart extends ChangeNotifier {
 
   Future<void> buildCart() async {
     var data = await getData();
-    // print("object");
-    // print(data);
 
     for (var i = 0; i < data.length; i++) {
       var item = f.getFoodItemById(data[i]);
@@ -79,7 +62,6 @@ class FoodCart extends ChangeNotifier {
   }
 
   Future<void> removeItem(FoodItem item, int quantity) async {
-    print("omm3");
     if (quantity == 0) {
       cart.remove(item);
     } else {
@@ -88,6 +70,11 @@ class FoodCart extends ChangeNotifier {
     itemtotal -= item.price;
     taxes = itemtotal * 0.18;
     total = itemtotal + deliveryCharge + taxes - discount;
+
+    if (cart.isEmpty) {
+      emptyCart();
+    }
+
     notifyListeners();
     final User? user = _auth.currentUser;
     if (counter >= 0) {
@@ -112,5 +99,30 @@ class FoodCart extends ChangeNotifier {
     final User? user = _auth.currentUser;
     await DatabaseService(uid: user!.uid)
         .updatefoodCart(null, 0.0, 0.0, 0.0, 0.0, 0.0);
+  }
+
+  Future verifyCoupon(coupon) async {
+    var document = await FirebaseFirestore.instance
+        .collection('coupons')
+        .doc(coupon)
+        .get();
+
+    var foundCoupon = document.data();
+
+    if (foundCoupon != null) {
+      var dis = foundCoupon["discount"];
+      var minorder = foundCoupon["minorder"];
+
+      if (total < minorder) {
+        return "Coupon valid on minimum order of $minorder";
+      }
+
+      discount = dis + .0;
+      total -= discount;
+      notifyListeners();
+      return "valid";
+    } else {
+      return "Invalid coupon! Please try again.";
+    }
   }
 }

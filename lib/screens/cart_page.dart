@@ -70,6 +70,8 @@ class PromoCodeWidget extends StatelessWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  String coupon = '';
+  bool couponApplied = false;
   @override
   Widget build(BuildContext context) {
     // final user = Provider.of<User?>(context);
@@ -296,10 +298,109 @@ class _CartPageState extends State<CartPage> {
               SizedBox(
                 height: 20,
               ),
-              PromoCodeWidget(),
-              SizedBox(
-                height: 10,
-              ),
+              couponApplied == false
+                  ? Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(left: 3, right: 3),
+                          decoration: BoxDecoration(boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFFfae3e2).withOpacity(0.1),
+                              spreadRadius: 1,
+                              blurRadius: 1,
+                              offset: Offset(0, 1),
+                            ),
+                          ]),
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color(0xFFe6e1e1), width: 1.0),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Color(0xFFe6e1e1), width: 1.0),
+                                    borderRadius: BorderRadius.circular(7)),
+                                fillColor: Colors.white,
+                                hintText: 'Add Your Promo Code',
+                                filled: true,
+                                suffixIcon: Icon(
+                                  Icons.local_offer,
+                                  color: Color(0xFFfd2c2c),
+                                )),
+                            onChanged: (val) {
+                              setState(() {
+                                coupon = val;
+                              });
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        (coupon.length > 0)
+                            ? Container(
+                                width: 145,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    border: Border.all(
+                                      color: Color(0xffEE7700),
+                                      width: 0.8,
+                                    )),
+                                // color: Colors.black,
+
+                                child: TextButton(
+                                  onPressed: () async {
+                                    FocusScope.of(context)
+                                        .unfocus(); // minimize keypad
+                                    var response =
+                                        await foodcart.verifyCoupon(coupon);
+                                    if (response == "valid") {
+                                      setState(() {
+                                        couponApplied = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        couponApplied = false;
+                                      });
+                                      final snackBar = SnackBar(
+                                        content: Text('$response'),
+                                        action: SnackBarAction(
+                                          label: 'Ok',
+                                          onPressed: () {
+                                            // Some code to undo the change.
+                                          },
+                                        ),
+                                      );
+
+                                      // Find the ScaffoldMessenger in the widget tree
+                                      // and use it to show a SnackBar.
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    }
+                                  },
+                                  child: Text(
+                                    'Apply Coupon',
+                                    style: TextStyle(
+                                        fontSize: 15.0, color: Colors.black
+                                        // fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
+                              )
+                            : SizedBox(
+                                height: 0,
+                              ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    )
+                  : SizedBox(
+                      height: 0,
+                    ),
               Container(
                 alignment: Alignment.center,
                 width: double.infinity,
@@ -380,7 +481,7 @@ class _CartPageState extends State<CartPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Taxes & Charges",
+                              "Taxes & Charges (18%)",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color(0xFF3a3a3b),
@@ -411,8 +512,18 @@ class _CartPageState extends State<CartPage> {
                                   fontWeight: FontWeight.w400),
                               textAlign: TextAlign.left,
                             ),
+                            couponApplied == true
+                                ? Text(
+                                    "---$coupon applied---",
+                                    style: TextStyle(
+                                      fontFamily: 'Georgia',
+                                      fontSize: 15.5,
+                                      color: const Color(0xff707070),
+                                    ),
+                                  )
+                                : SizedBox(width: 1),
                             Text(
-                              "₹${foodcart.discount}",
+                              "- ₹${foodcart.discount}",
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color(0xFF3a3a3b),
@@ -479,5 +590,33 @@ class _CartPageState extends State<CartPage> {
           );
         }),
       );
+  }
+}
+
+class SnackBarPage extends StatelessWidget {
+  const SnackBarPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          final snackBar = SnackBar(
+            content: const Text('Yay! A SnackBar!'),
+            action: SnackBarAction(
+              label: 'Undo',
+              onPressed: () {
+                // Some code to undo the change.
+              },
+            ),
+          );
+
+          // Find the ScaffoldMessenger in the widget tree
+          // and use it to show a SnackBar.
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        },
+        child: const Text('Show SnackBar'),
+      ),
+    );
   }
 }
