@@ -17,7 +17,6 @@ class FoodCart extends ChangeNotifier {
   double discount = 0;
   double total = 0;
   var ids = [];
-  int counter = -1;
 
   Future<List> getData() async {
     final User? user = _auth.currentUser;
@@ -52,8 +51,7 @@ class FoodCart extends ChangeNotifier {
     print(cart);
     notifyListeners();
     final User? user = _auth.currentUser;
-    counter++;
-    ids.insert(counter, item.id);
+    ids.add(item.id);
     await DatabaseService(uid: user!.uid)
         .updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
   }
@@ -74,16 +72,14 @@ class FoodCart extends ChangeNotifier {
 
     notifyListeners();
     final User? user = _auth.currentUser;
-    if (counter >= 0) {
-      counter--;
-    }
     ids.remove(item.id);
     await DatabaseService(uid: user!.uid)
         .updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
   }
 
   Future<void> emptyCart() async {
-    cart = <FoodItem, int>{};
+    cart.clear();
+    ids.clear();
     itemtotal = 0;
     taxes = 0;
     discount = 0;
