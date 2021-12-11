@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:foodbyte/services/database.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class AuthService {
 
@@ -8,9 +11,10 @@ class AuthService {
 
 
   // auth change user stream
-  Stream<User?> get user{
+  Stream<User?> get user {
     return _auth.authStateChanges();
   }
+
   // sign in anon
   // Future signInAnon() async {
   //   try {
@@ -24,14 +28,14 @@ class AuthService {
   // }
 
 
-
 // sign in with email and password
-  Future signInWithEmailAndPassword(String email, String password) async{
-    try{
-      UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       User? users = result.user;
       return users;
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
@@ -39,14 +43,26 @@ class AuthService {
 
 // register with email and password
 
-  Future registerWithEmailAndPassword(String email, String password, String name, String phone) async{
-    try{
-      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  Future registerWithEmailAndPassword(String email, String password,
+      String name, String phone) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       User? users = result.user;
       await DatabaseService(uid: users!.uid).updateUserProfile(name,phone,email);
-      await DatabaseService(uid: users!.uid).updatefoodCart(null, 0.0, 0.0, 0.0, 0.0, 0.0);
+      await DatabaseService(uid: users!.uid).updatefoodCart(
+          null, 0.0, 0.0, 0.0, 0.0, 0.0);
       return users;
-    }catch(e){
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  Future sendPasswordResetEmail(String email) async {
+    try {
+      _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
       print(e.toString());
       return null;
     }
@@ -62,4 +78,5 @@ class AuthService {
       return null;
     }
   }
+
 }
