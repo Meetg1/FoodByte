@@ -51,6 +51,7 @@ class FoodCart extends ChangeNotifier {
     print(cart);
     notifyListeners();
     final User? user = _auth.currentUser;
+
     ids.add(item.id);
     await DatabaseService(uid: user!.uid)
         .updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
@@ -72,13 +73,14 @@ class FoodCart extends ChangeNotifier {
 
     notifyListeners();
     final User? user = _auth.currentUser;
+
     ids.remove(item.id);
     await DatabaseService(uid: user!.uid)
         .updatefoodCart(ids, itemtotal, deliveryCharge, taxes, discount, total);
   }
 
   Future<void> emptyCart() async {
-    cart.clear();
+    cart = <FoodItem, int>{};
     ids.clear();
     itemtotal = 0;
     taxes = 0;
